@@ -1,0 +1,89 @@
+﻿生成启动时间为 2015/11/30 19:30:01。
+     1>项目“D:\Visual studio 2013\Project\ChessFinal\ChessFinal\ChessFinal.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\vs_13\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt IsValidateMove.cpp MoveGenerator.cpp
+         MoveGenerator.cpp
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(38): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(66): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(94): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(122): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(152): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(180): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(208): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(236): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(255): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(266): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(283): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(294): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(311): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(322): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(338): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(349): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(367): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(378): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(395): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(406): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(423): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(434): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(450): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(461): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(494): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(528): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(562): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(596): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(632): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(666): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(700): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(734): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(755): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(769): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(788): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(802): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(819): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(833): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(852): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(866): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(885): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(899): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(918): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(932): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(949): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(963): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(982): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(996): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1013): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1027): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1041): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1055): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1071): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1085): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1099): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1113): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1129): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1143): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1157): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1171): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1187): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1201): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1215): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(1229): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(5): warning C4101: “xEPos”: 未引用的局部变量
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(5): warning C4101: “ySPos”: 未引用的局部变量
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(5): warning C4101: “xSPos”: 未引用的局部变量
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(5): warning C4101: “yEPos”: 未引用的局部变量
+         IsValidateMove.cpp
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\isvalidatemove.cpp(12): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+         正在生成代码...
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\isvalidatemove.cpp(366): warning C4715: “IsVaildMove”: 不是所有的控件路径都返回值
+       Link:
+         D:\vs_13\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.lib" /MACHINE:X86 Debug\Evaluation.obj
+         Debug\IsValidateMove.obj
+         Debug\Move.obj
+         Debug\MoveGenerator.obj
+     1>MSVCRTD.lib(crtexew.obj) : error LNK2019: 无法解析的外部符号 _WinMain@16，该符号在函数 ___tmainCRTStartup 中被引用
+     1>D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.exe : fatal error LNK1120: 1 个无法解析的外部命令
+     1>已完成生成项目“D:\Visual studio 2013\Project\ChessFinal\ChessFinal\ChessFinal.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:01.31
