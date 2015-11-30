@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-//其中自的定义
+//棋子的定义
 #define NO_CHESS	0
 #define B_Chariot   1
 #define B_Horse		2
