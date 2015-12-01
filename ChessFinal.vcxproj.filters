@@ -27,6 +27,9 @@
     <ClCompile Include="Move.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Search.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chess.h">
@@ -42,6 +45,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Move.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Search.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -716,6 +716,9 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 			xchess = currChessBoard[i][j];
 			if (xchess != NULL)
 			{
+				currChessBoard[i][j]++;		//»ùÖµ
+				currChessBoard[i][j] += Flex[i][j];
+				currChessBoard[i][j] += Flex[i][j];
 				
 			}
 		}
