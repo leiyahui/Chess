@@ -8,16 +8,27 @@ bool IsEmptyStack(MoveLink top)	 //是否栈空
 	}
 	return false;
 }
-void Push(MoveLink* top, MoveLink t)		//入栈
+void PushStep(MoveLink* top, MoveLink t)		//入栈
 {
 	t->next = *top;		//当前节点指向新插入的节点
 	(*top) = t;				//将当前节点变为插入的节点
 }
-MoveLink Pop(MoveLink* top)		//出栈
+MoveLink PopStep(MoveLink* top)		//出栈
 {
 	MoveLink p = (*top);
 	(*top) = (*top)->next;
 	return p;
+}
+bool IsEmptyStack(MoveLink top)
+{
+	if (top == NULL)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 MoveLink Search(int currChessBoard[][9], int depth)
 {
@@ -37,11 +48,11 @@ MoveLink Search(int currChessBoard[][9], int depth)
 	while (p->next != NULL)		//将这次搜索的步伐进栈
 	{
 		p = p->next;
-		Push(&top, p);
+		PushStep(&top, p);
 	}
 	while(!IsEmptyStack(top))		//如果步伐栈不为空
 	{
-		NowNode = Pop(&top);
+		NowNode = PopStep(&top);
 		if (depth == Max_depth - 1)
 		{
 			CurrFirstMove= NowNode;
@@ -75,7 +86,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 				while (p->next != NULL)		//将这次搜索的步伐进栈
 				{
 					p = p->next;
-					Push(&top, p);
+					PushStep(&top, p);
 				}
 			}
 			

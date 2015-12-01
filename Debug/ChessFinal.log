@@ -1,7 +1,15 @@
-﻿生成启动时间为 2015/11/30 19:30:01。
-     1>项目“D:\Visual studio 2013\Project\ChessFinal\ChessFinal\ChessFinal.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2015/12/1 17:53:05。
+     1>项目“D:\Visual studio 2013\Project\ChessFinal\ChessFinal\ChessFinal.vcxproj”在节点 2 上(Rebuild 个目标)。
      1>ClCompile:
-         D:\vs_13\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt IsValidateMove.cpp MoveGenerator.cpp
+         D:\vs_13\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Evaluation.cpp IsValidateMove.cpp Move.cpp MoveGenerator.cpp Search.cpp
+         Search.cpp
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\chess.h(24): error C2011: “ReleatedNode”:“struct”类型重定义
+                 d:\visual studio 2013\project\chessfinal\chessfinal\chess.h(24) : 参见“ReleatedNode”的声明
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\search.cpp(23): error C2146: 语法错误: 缺少“;”(在标识符“MoveLink”的前面)
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\search.cpp(23): error C4430: 缺少类型说明符 - 假定为 int。注意:  C++ 不支持默认 int
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\search.cpp(23): error C2365: “IsEmptyStack”: 重定义；以前的定义是“函数”
+                 d:\visual studio 2013\project\chessfinal\chessfinal\search.h(7) : 参见“IsEmptyStack”的声明
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\search.cpp(63): warning C4800: “int”: 将值强制为布尔值“true”或“false”(性能警告)
          MoveGenerator.cpp
      1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(38): warning C4804: “<=”: 在操作中使用类型“bool”不安全
      1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(66): warning C4804: “<=”: 在操作中使用类型“bool”不安全
@@ -71,19 +79,69 @@
      1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(5): warning C4101: “ySPos”: 未引用的局部变量
      1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(5): warning C4101: “xSPos”: 未引用的局部变量
      1>d:\visual studio 2013\project\chessfinal\chessfinal\movegenerator.cpp(5): warning C4101: “yEPos”: 未引用的局部变量
+         Move.cpp
          IsValidateMove.cpp
      1>d:\visual studio 2013\project\chessfinal\chessfinal\isvalidatemove.cpp(12): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+         Evaluation.cpp
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(683): warning C4804: “<=”: 在操作中使用类型“bool”不安全
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(716): error C2065: “position”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(718): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(718): error C2065: “position”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(719): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(720): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(720): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(720): error C2065: “m_FlexPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(721): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(721): error C2065: “position”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(730): error C2065: “position”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(732): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(732): error C2065: “position”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(733): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(734): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(734): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(735): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(737): error C2065: “m_AttackPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(741): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(741): error C2065: “R_KING”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(743): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(748): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(749): error C2065: “m_GuardPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(751): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(757): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(757): error C2065: “R_KING”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(763): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(764): error C2065: “m_GuardPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(766): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(770): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(770): error C2065: “m_AttackPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(775): error C2065: “m_GuardPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(777): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(783): error C2065: “m_AttackPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(787): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(787): error C2065: “B_KING”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(789): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(793): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(794): error C2065: “m_GuardPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(796): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(802): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(802): error C2065: “B_KING”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(808): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(809): error C2065: “m_GuardPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(811): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(815): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(815): error C2065: “m_AttackPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(819): error C2065: “m_GuardPos”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(821): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(834): error C2065: “position”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(836): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(836): error C2065: “position”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(837): error C2065: “nChessType”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(839): error C2065: “m_ChessValue”: 未声明的标识符
+     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(843): error C2065: “m_ChessValue”: 未声明的标识符
          正在生成代码...
      1>d:\visual studio 2013\project\chessfinal\chessfinal\isvalidatemove.cpp(366): warning C4715: “IsVaildMove”: 不是所有的控件路径都返回值
-       Link:
-         D:\vs_13\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.lib" /MACHINE:X86 Debug\Evaluation.obj
-         Debug\IsValidateMove.obj
-         Debug\Move.obj
-         Debug\MoveGenerator.obj
-     1>MSVCRTD.lib(crtexew.obj) : error LNK2019: 无法解析的外部符号 _WinMain@16，该符号在函数 ___tmainCRTStartup 中被引用
-     1>D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.exe : fatal error LNK1120: 1 个无法解析的外部命令
-     1>已完成生成项目“D:\Visual studio 2013\Project\ChessFinal\ChessFinal\ChessFinal.vcxproj”(Build 个目标)的操作 - 失败。
+     1>已完成生成项目“D:\Visual studio 2013\Project\ChessFinal\ChessFinal\ChessFinal.vcxproj”(Rebuild 个目标)的操作 - 失败。
 
 生成失败。
 
-已用时间 00:00:01.31
+已用时间 00:00:04.07
