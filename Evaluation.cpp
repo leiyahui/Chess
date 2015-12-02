@@ -826,7 +826,7 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 			}
 		}
 	}
-	SumBValue = SumRValue = 0;
+	SumBValue = SumRValue = 0;		//将总值为0
 	for (i = 0; i++; i < 10)
 	{
 		for (j = 0; j < 9; j++)
@@ -836,22 +836,22 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 			{
 				if (IsRed(xchess))
 				{
-					SumRValue += ChessValue[i][j];
+					SumRValue += ChessValue[i][j];		//将红色棋子的总值相加
 				}
 				else
 				{
-					SumBValue += ChessValue[i][j];
+					SumBValue += ChessValue[i][j];		//将黑色起总的总值相加
 				}
 			}
 		}
 	}
 	if (IsRedTurn)
 	{
-		return SumRValue - SumBValue;
+		return SumRValue - SumBValue;			//轮到红棋走返回估值
 	}
 	else
 	{
-		return SumBValue - SumRValue;
+		return SumBValue - SumRValue;		//轮到黑棋走返回估值的相反数
 	}
 
 }

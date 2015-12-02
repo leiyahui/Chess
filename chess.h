@@ -20,9 +20,3 @@
 #define IsRed(chess)	(8<=(chess)<=14?1:0)
 #define IsSameCol(chess1,chess2)	(IsBlack(chess1)&&IsBlack(chess2)||IsRed(chess1)&&IsRed(chess2))
 
-typedef struct ReleatedNode		//跟一个棋子相关的节点
-{
-	int xEPos;
-	int yEPos;
-	ReleatedNode* next;
-}LReleatedNode,*LReleatedList;

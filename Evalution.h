@@ -14,6 +14,13 @@
 #define FLEXIBILTY_HORSE 12
 #define FLEXIBILTY_CANON 6
 #define FLEXIBILTY_KING 0
+typedef struct ReleatedNode		//跟一个棋子相关的节点
+{
+	int xEPos;
+	int yEPos;
+	ReleatedNode* next;
+}LReleatedNode, *LReleatedList;
+
 const int BAO[10][9] =		//黑兵的基础值的定义
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,

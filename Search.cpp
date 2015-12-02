@@ -19,17 +19,6 @@ MoveLink PopStep(MoveLink* top)		//出栈
 	(*top) = (*top)->next;
 	return p;
 }
-bool IsEmptyStack(MoveLink top)
-{
-	if (top == NULL)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
 MoveLink Search(int currChessBoard[][9], int depth)
 {
 	int Max_depth;				//最大深度
@@ -39,8 +28,9 @@ MoveLink Search(int currChessBoard[][9], int depth)
 	MoveLink top = NULL;		//保存所有步伐的栈顶
 	MoveLink p;
 	MoveLink NowNode;			//当前弹出的步伐
-	MoveLink BestFirstMove;			//保存最优的头一步
-	MoveLink CurrFirstMove;			//保存当前的头一步
+	MoveLink BestFirstMove=NULL;			//保存最优的头一步
+	MoveLink CurrFirstMove=NULL;			//保存当前的头一步
+	MovedLink MovedTop = NULL;
 	Max_depth = depth;
 	Head = MoveGenerator(currChessBoard);		//第一次产生向下一层的步伐
 	depth--;			//搜索深度--
@@ -58,7 +48,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 			CurrFirstMove= NowNode;
 		}
 		
-		MakeMove(currChessBoard, NowNode->xSPos, NowNode->ySPos, NowNode->xEPos, NowNode->yEPos);		//走出一步
+		MakeMove(currChessBoard,&MovedTop,NowNode->xSPos, NowNode->ySPos, NowNode->xEPos, NowNode->yEPos);		//走出一步
 		depth--;
 		while (depth >= 1)
 		{
@@ -69,14 +59,14 @@ MoveLink Search(int currChessBoard[][9], int depth)
 				while (p->next != NULL)
 				{
 					p = p->next;
-					MakeMove(currChessBoard, p->xSPos, p->ySPos, p->xEPos, p->yEPos);		//走最后一步
+					MakeMove(currChessBoard,&MovedTop,p->xSPos, p->ySPos, p->xEPos, p->yEPos);		//走最后一步
 					sore = Evaluation(currChessBoard, (Max_depth - depth) % 2);		//对最后一步进行评价
 					if (sore > Max_depth)
 					{
 						Max_depth = sore;				//保存当前的最大评分
 						BestFirstMove = CurrFirstMove;		//将最头部的一个步伐保存入结构中
 					}
-					unMakeNove(currChessBoard);
+					unMakeMove(currChessBoard,&MovedTop);
 				}
 			}
 			else		//否则产生步伐并且入栈

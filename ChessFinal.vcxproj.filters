@@ -30,6 +30,9 @@
     <ClCompile Include="Search.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Dialog.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chess.h">
@@ -50,5 +53,71 @@
     <ClInclude Include="Search.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resource.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="About1.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="board1.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="1.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="2.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="3.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="4.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="5.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="6.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="7.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="8.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="9.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="10.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="11.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="12.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="13.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="14.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="bitmap16.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Chess.dlg">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-#include "chess.h"
+
 #include "MoveGenerator.h"
 #include "Move.h"
 void PushStep(MoveLink* top, MoveLink t);		//½«²½·¥½øÕ»

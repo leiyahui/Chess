@@ -34,7 +34,7 @@ void MakeMove(int currChessBoard[][9],MovedLink* top,int xSPos,int ySPos,int xEP
 	currChessBoard[xSPos][ySPos] = NO_CHESS;			//更改棋盘
 	Push(top, xSPos, ySPos, xEPos, yEPos, i);		//把已走过的步伐进栈，top为全局变量
 }
-void unMakeMove(int currChessBoard[][9], MovedLink* top)
+void unMakeMove(int currChessBoard[][9], MovedLink* top)	//退回一步就并且出栈
 {
 	MovedLink move = Pop(top);		//出栈
 	int xSPos = move->xSPos;
