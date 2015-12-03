@@ -2,6 +2,7 @@
 #include"resource.h"
 #include "IsValidateMove.h"
 #include "chess.h"
+#include "Search.h"
 int currChessBoard[10][9] =			//棋盘
 {
 	1, 2, 4, 5, 7, 5, 4, 2, 1,		//黑色,用户是黑色棋子
@@ -58,12 +59,14 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	int i, j;
 	int chess;
     char bitmapID[8]="CHESS";
-	char out[3];
+	char out[3];		//帮助寻找棋子资源
 	static int cxWidth, cyWidth;		//一个的长度
-	int xPos, yPos;
-	static int xSPos, ySPos, xEPos, yEPos;
+	int xPos, yPos;			//鼠标点击的位置
+	static int xSPos, ySPos, xEPos, yEPos;		//棋子在棋盘数组的坐标
 	static bool mark=false;		//标识上次是否选定一个棋子
 	static HINSTANCE hInstance;
+	MoveLink bestMove;	//存放搜索返回的走法
+	static int depth=2;		//搜索深度
 	switch (message)
 	{
 	case WM_CREATE:
@@ -85,13 +88,13 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		hdcMem = CreateCompatibleDC(hdc);
 		SelectObject(hdcMem, hBitmap);
 		StretchBlt(hdc, 0, 0, cxClient, cyClient,
-			hdcMem, 0, 0, cxSource, cySource, MERGECOPY);
+			hdcMem, 0, 0, cxSource, cySource, MERGECOPY);		//加载棋盘的位图
 		for (i = 0; i < 10; i++)
 		{
 			for (j = 0; j < 9; j++)
 			{
 				chess = currChessBoard[i][j];
-				if (chess != NO_CHESS)
+				if (chess != NO_CHESS)			//把棋子绘制在棋盘上
 				{
 					_itoa_s(chess, out, 10);
 					bitmapID[5] = out[0];
@@ -101,7 +104,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 					cxSource = bitmap.bmWidth;
 					cySource = bitmap.bmHeight;
 					SelectObject(hdcMem, hBitmap);
-					StretchBlt(hdc, j*cxWidth+10,cyClient- i*cyWidth-40, cxWidth / 2, cyWidth / 2,
+					StretchBlt(hdc, j*cxWidth+10,cyClient- i*cyWidth-40, cxWidth / 2, cyWidth / 2,		//绘制棋子
 						hdcMem, 0, 0, cxSource, cySource, MERGECOPY);
 				}
 				
@@ -117,30 +120,33 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			for (j = 0; j < 9; j++)
 			{
-				if (xPos >= ((j*cxWidth + 10) - cxWidth / 2) && xPos <= ((j*cxWidth + 10) + cxWidth / 2) && yPos >= ((cyClient - i*cyWidth - 40) - cyWidth / 2) && yPos <= ((cyClient - i*cyWidth - 40) + cyWidth / 2))
+				if (xPos >= ((j*cxWidth + 10) - cxWidth / 2) && xPos <= ((j*cxWidth + 10) + cxWidth / 2) && yPos >= ((cyClient - i*cyWidth - 40) - cyWidth / 2) && yPos <= ((cyClient - i*cyWidth - 40) + cyWidth / 2))			//判断棋子的位置
 				{
-					if (mark == false)
+					if (mark == false)		//起始位置
 					{
 						xSPos = i;
 						ySPos = j;
-						mark = true;
+						mark = true;		//把标志位设为true
 						return 0;
 					}
-					else
+					else		//终点
 					{
 						xEPos = i;
 						yEPos = j;
-						if (IsValidateMove(currChessBoard,xSPos, ySPos,xEPos,yEPos))
+						if (IsValidateMove(currChessBoard,xSPos, ySPos,xEPos,yEPos))		//合法走法
 						{
 							currChessBoard[xEPos][yEPos] = currChessBoard[xSPos][ySPos];
-							currChessBoard[xSPos][ySPos] = NO_CHESS;
-							InvalidateRect(hwnd,NULL,false);
+							currChessBoard[xSPos][ySPos] = NO_CHESS;		//更改棋盘完成
+							bestMove = Search(currChessBoard, depth);		//搜索最好的走法
+							currChessBoard[bestMove->xEPos][bestMove->yEPos] = currChessBoard[bestMove->xSPos][bestMove->ySPos];
+							currChessBoard[xSPos][ySPos] = NULL;
+							InvalidateRect(hwnd,NULL,false);		//重绘
 						}
-						else
+						else			//不合法走法
 						{
 							MessageBox(hwnd, TEXT("不合法的走法"), TEXT("错误"), MB_OK);
 						}
-						mark = false;
+						mark = false;			//把标志位恢复
 						return 0;
 					}
 					

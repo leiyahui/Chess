@@ -7,4 +7,4 @@ typedef struct Movement
 	int yEPos;
 	Movement* next;
 }Move,*MoveLink;
-MoveLink MoveGenerator(int currChessBoard[][9]);  //走法产生器
+MoveLink MoveGenerator(int currChessBoard[][9],int redTurn);  //走法产生器

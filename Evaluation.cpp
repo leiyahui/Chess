@@ -11,12 +11,13 @@ LReleatedList GetReleatedPiece(int currChessBoard[][9], int xSPos, int ySPos)
 {
 	int m, n;
 	LReleatedList Head = (LReleatedList)malloc(sizeof(LReleatedNode));
+	Head->next = NULL;
 	LReleatedList p = Head;
 	LReleatedList q;
 	int chess = currChessBoard[xSPos][ySPos];
 	if (chess == NO_CHESS)
 	{
-		return NULL;
+		return Head;
 	}
 	switch (chess)
 	{
@@ -648,6 +649,88 @@ LReleatedList GetReleatedPiece(int currChessBoard[][9], int xSPos, int ySPos)
 			p = q;
 		}
 		break;
+	case R_Pawn:
+		if (xSPos >= 5)		//还没有过河
+		{
+			q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向下走
+			q->xEPos = xSPos - 1;
+			q->yEPos = ySPos;
+			q->next = NULL;
+			p->next = q;
+			p = q;
+		}
+		else			//已经过了河
+		{
+			if (xSPos > 0)		//可以向下走
+			{
+				q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向下走
+				q->xEPos = xSPos - 1;
+				q->yEPos = ySPos;
+				q->next = NULL;
+				p->next = q;
+				p = q;
+			}
+			if (ySPos > 0)	//可以向左走
+			{
+				q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向左走
+				q->xEPos = xSPos;
+				q->yEPos = ySPos - 1;
+				q->next = NULL;
+				p->next = q;
+				p = q;
+			}
+			if (ySPos < 8)
+			{
+				q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向右走
+				q->xEPos = xSPos;
+				q->yEPos = ySPos + 1;
+				q->next = NULL;
+				p->next = q;
+				p = q;
+			}
+		}
+		break;
+	case B_Pawn:
+		if (xSPos <= 4)		//还没有过河
+		{
+			q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向上走
+			q->xEPos = xSPos + 1;
+			q->yEPos = ySPos;
+			q->next = NULL;
+			p->next = q;
+			p = q;
+		}
+		else
+		{
+			if (xSPos < 9)		//向上走
+			{
+				q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向上走
+				q->xEPos = xSPos + 1;
+				q->yEPos = ySPos;
+				q->next = NULL;
+				p->next = q;
+				p = q;
+			}
+			if (ySPos > 0)			//可以向左走
+			{
+				q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向左走
+				q->xEPos = xSPos;
+				q->yEPos = ySPos-1;
+				q->next = NULL;
+				p->next = q;
+				p = q;
+			}
+			if (ySPos < 8)
+			{
+				q = (LReleatedList)malloc(sizeof(LReleatedNode));		//可以向右走
+				q->xEPos = xSPos;
+				q->yEPos = ySPos + 1;
+				q->next = NULL;
+				p->next = q;
+				p = q;
+			}
+		}
+		break;
 	}
 	return Head;
 }
@@ -715,7 +798,7 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 	}
 	for (i = 0; i < 10; i++)
 	{
-		for (j = 0; j < 9; i++)
+		for (j = 0; j < 9; j++)
 		{
 			xchess = currChessBoard[i][j];
 			if (xchess != NO_CHESS)
@@ -827,7 +910,7 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 		}
 	}
 	SumBValue = SumRValue = 0;		//将总值为0
-	for (i = 0; i++; i < 10)
+	for (i = 0; i < 10;i++)
 	{
 		for (j = 0; j < 9; j++)
 		{
