@@ -16,7 +16,7 @@
 #define	R_Adviser	12
 #define R_Pawn		13
 #define	R_King		14
-#define IsBlack(chess)	(1<=(chess)<=7?1:0)
-#define IsRed(chess)	(8<=(chess)<=14?1:0)
-#define IsSameCol(chess1,chess2)	(IsBlack(chess1)&&IsBlack(chess2)||IsRed(chess1)&&IsRed(chess2))
+#define IsBlack(chess)	(1<=(chess)&&(chess)<=7?1:0)
+#define IsRed(chess)	(8<=(chess)&&(chess)<=14?1:0)
+#define IsSameCol(chess1,chess2)	((IsBlack(chess1)&&IsBlack(chess2))||(IsRed(chess1)&&IsRed(chess2)))
 

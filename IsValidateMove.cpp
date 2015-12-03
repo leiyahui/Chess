@@ -1,5 +1,5 @@
 #include"IsValidateMove.h"
-int IsVaildMove(int currChessBoard[][9], int xSPos, int ySPos, int xEPos, int yEPos)		//是否是合法的走法
+int IsValidateMove(int currChessBoard[][9], int xSPos, int ySPos, int xEPos, int yEPos)		//是否是合法的走法
 {
 	int i;
 	int j;
@@ -72,7 +72,7 @@ int IsVaildMove(int currChessBoard[][9], int xSPos, int ySPos, int xEPos, int yE
 		break;
 	case B_Horse:				//黑马
 	case R_Horse:				//红马
-		if (abs((xSPos - xEPos)*(ySPos - ySPos)) != 2)		//马没有走日
+		if (abs((xSPos - xEPos)*(ySPos - yEPos)) != 2)		//马没有走日
 			return 0;
 		if ((xSPos - xEPos) == 2)
 		{
