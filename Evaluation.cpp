@@ -1,5 +1,5 @@
 #include "Evalution.h"
-int GetBingValue(int x, int y, int position[10][9])
+int GetBingValue(int x, int y, int position[][9])
 {
 	if (position[y][x] = B_Pawn)
 		return BAO[y][x];

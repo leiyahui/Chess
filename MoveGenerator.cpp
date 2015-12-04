@@ -6,9 +6,9 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 	int chess;
 	int i, j;
 	int m, n;
-	MoveLink Head = NULL;
-	MoveLink p = (MoveLink)malloc(sizeof(Move));
-	Head = p;
+	MoveLink Head = (MoveLink)malloc(sizeof(Move));
+	MoveLink p ;
+	p = Head;
 	MoveLink q;
 	if (redTurn)
 	{

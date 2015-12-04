@@ -30,7 +30,8 @@ MovedLink Pop(MovedLink* top)		//所有已走过的步伐出栈
 }
 void MakeMove(int currChessBoard[][9],MovedLink* top,int xSPos,int ySPos,int xEPos,int yEPos)		//走出一步，并且把走过的步伐保存入已走过的步伐的栈中
 {
-	int i = currChessBoard[yEPos][yEPos];
+	int i = currChessBoard[xEPos][yEPos];
+	currChessBoard[xEPos][yEPos] = currChessBoard[xSPos][ySPos];		//更改棋盘
 	currChessBoard[xSPos][ySPos] = NO_CHESS;			//更改棋盘
 	Push(top, xSPos, ySPos, xEPos, yEPos, i);		//把已走过的步伐进栈，top为全局变量
 }
