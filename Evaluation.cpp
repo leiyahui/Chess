@@ -1,10 +1,14 @@
 #include "Evalution.h"
-int GetBingValue(int x, int y, int position[][9])
+int GetBingValue(int currChessBoard[][9],int i, int j)
 {
-	if (position[y][x] = B_Pawn)
-		return BAO[y][x];
-	if (position[y][x] = R_Pawn)
-		return BA1[y][x];
+	if (currChessBoard[i][j] == B_Pawn)		//如果是黑兵的话返回黑兵的附加值
+	{
+		return BAO[i][j];
+	}
+	if (currChessBoard[i][j] == R_Pawn)		//如果是红兵的话返回红兵的附加值
+	{
+		return BA1[i][j];
+	}
 	return 0;
 }
 LReleatedList GetReleatedPiece(int currChessBoard[][9], int xSPos, int ySPos)
@@ -805,7 +809,7 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 			{
 				ChessValue[i][j]++;		//如果棋子存在则基本价值不为0
 				ChessValue[i][j] += Flex[i][j] * m_FlexValue[xchess];		//加上灵活性的估值
-				ChessValue[i][j] += GetBingValue(i, j, currChessBoard);			//加上兵的估值
+				ChessValue[i][j] += GetBingValue(currChessBoard,i,j);			//加上兵的估值
 			}
 		}
 	}
