@@ -17,16 +17,21 @@ MovedLink Pop(MovedLink* top)		//所有已走过的步伐出栈
 		printf("栈空");
 		return NULL;
 	}
-	MovedLink p = (MovedLink)malloc(sizeof(Moved));
 	MovedLink q = (*top);
-	p->xSPos = q->xSPos;
-	p->ySPos = q->ySPos;
-	p->xEPos = q->xEPos;
-	p->yEPos = q->yEPos;
-	p->echess = q->echess;
 	(*top) = q->next;
-	free(q);
-	return p;
+	return q;
+}
+int MovedStackLength(MovedLink top)		//步伐栈的长度
+{
+	int length = 0;
+	MovedLink p;
+	p = top;
+	while (p != NULL)
+	{
+		p = p->next;
+		length++;
+	}
+	return length;
 }
 void MakeMove(int currChessBoard[][9],MovedLink* top,int xSPos,int ySPos,int xEPos,int yEPos)		//走出一步，并且把走过的步伐保存入已走过的步伐的栈中
 {
@@ -41,9 +46,10 @@ void unMakeMove(int currChessBoard[][9], MovedLink* top)	//退回一步就并且出栈
 	int xSPos = move->xSPos;
 	int ySPos = move->ySPos;
 	int xEPos = move->xEPos;
-	int yEPos = move->yEPos;
+	int yEPos = move->yEPos; 
 	int i = currChessBoard[xEPos][yEPos];		//当时移动的棋子
 	int j = move->echess;				//被覆盖的棋子
 	currChessBoard[xSPos][ySPos] = i;
 	currChessBoard[xEPos][yEPos] = j;
+	free(move);
 }

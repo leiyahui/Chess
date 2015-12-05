@@ -66,7 +66,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static bool mark=false;		//标识上次是否选定一个棋子
 	static HINSTANCE hInstance;
 	MoveLink bestMove;	//存放搜索返回的走法
-	static int depth=2;		//搜索深度
+	static int depth=5;		//搜索深度
 	switch (message)
 	{
 	case WM_CREATE:
@@ -137,9 +137,19 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 						{
 							currChessBoard[xEPos][yEPos] = currChessBoard[xSPos][ySPos];
 							currChessBoard[xSPos][ySPos] = NO_CHESS;		//更改棋盘完成
+							if (IsRedFail(currChessBoard))
+							{
+								MessageBox(hwnd, TEXT("你赢了"), TEXT(""), MB_OK);
+								return 0;
+							}
 							bestMove = Search(currChessBoard, depth);		//搜索最好的走法
-							currChessBoard[bestMove->xEPos][bestMove->yEPos] = currChessBoard[bestMove->xSPos][bestMove->ySPos];
-							currChessBoard[xSPos][ySPos] = NULL;
+ 							currChessBoard[bestMove->xEPos][bestMove->yEPos] = currChessBoard[bestMove->xSPos][bestMove->ySPos];
+							currChessBoard[bestMove->xSPos][bestMove->ySPos] = NO_CHESS;
+							if (IsBlackFail(currChessBoard))
+							{
+								MessageBox(hwnd, TEXT("你输了"), TEXT(""), MB_OK);
+								return 0;
+							}
 							InvalidateRect(hwnd,NULL,false);		//重绘
 						}
 						else			//不合法走法

@@ -45,6 +45,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = m;
 								q->yEPos = j;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;
@@ -58,7 +59,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 							q->xSPos = i;
 							q->ySPos = j;
 							q->xEPos = m;
-							q->ySPos = j;
+							q->yEPos = j;
 							q->next = NULL;
 							p->next = q;
 							p = q;
@@ -73,6 +74,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = m;
 								q->yEPos = j;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;
@@ -86,7 +88,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 							q->xSPos = i;
 							q->ySPos = j;
 							q->xEPos = i;
-							q->ySPos = m;
+							q->yEPos = m;
 							q->next = NULL;
 							p->next = q;
 							p = q;
@@ -101,6 +103,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = i;
 								q->yEPos = m;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;
@@ -114,7 +117,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 							q->xSPos = i;
 							q->ySPos = j;
 							q->xEPos = i;
-							q->ySPos = m;
+							q->yEPos = m;
 							q->next = NULL;
 							p->next = q;
 							p = q;
@@ -129,6 +132,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = i;
 								q->yEPos = m;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;
@@ -727,6 +731,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = m;
 								q->yEPos = j;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;
@@ -740,7 +745,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 							q->xSPos = i;
 							q->ySPos = j;
 							q->xEPos = m;
-							q->ySPos = j;
+							q->yEPos = j;
 							q->next = NULL;
 							p->next = q;
 							p = q;
@@ -755,6 +760,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = m;
 								q->yEPos = j;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;
@@ -768,7 +774,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 							q->xSPos = i;
 							q->ySPos = j;
 							q->xEPos = i;
-							q->ySPos = m;
+							q->yEPos = m;
 							q->next = NULL;
 							p->next = q;
 							p = q;
@@ -783,6 +789,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = i;
 								q->yEPos = m;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;
@@ -796,7 +803,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 							q->xSPos = i;
 							q->ySPos = j;
 							q->xEPos = i;
-							q->ySPos = m;
+							q->yEPos = m;
 							q->next = NULL;
 							p->next = q;
 							p = q;
@@ -811,6 +818,7 @@ MoveLink MoveGenerator(int currChessBoard[][9], int redTurn)		//走法产生器,i=0该
 								q->xEPos = i;
 								q->yEPos = m;
 								q->next = NULL;
+								p->next = q;
 								p = q;
 							}
 							break;

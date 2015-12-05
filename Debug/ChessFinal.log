@@ -1,9 +1,8 @@
-﻿生成启动时间为 2015/12/4 14:23:56。
+﻿生成启动时间为 2015/12/5 21:38:02。
      1>项目“D:\Visual studio 2013\Project\ChessFinal\ChessFinal\ChessFinal.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         D:\vs_13\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Evaluation.cpp
-         Evaluation.cpp
-     1>d:\visual studio 2013\project\chessfinal\chessfinal\evaluation.cpp(743): warning C4101: “sum”: 未引用的局部变量
+         D:\vs_13\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Search.cpp
+         Search.cpp
        Link:
          D:\vs_13\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Visual studio 2013\Project\ChessFinal\Debug\ChessFinal.lib" /MACHINE:X86 Debug\Resource.res
          Debug\Dialog.obj
@@ -17,4 +16,4 @@
 
 生成成功。
 
-已用时间 00:00:01.95
+已用时间 00:00:00.99
