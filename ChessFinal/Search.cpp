@@ -75,15 +75,11 @@ MoveLink Search(int currChessBoard[][9], int depth)
 	MoveLink NowNode;			//当前弹出的步伐
 	MoveLink BestFirstMove=(MoveLink)malloc(sizeof(Move));			//保存最优的头一步
 	MoveLink CurrFirstMove=(MoveLink)malloc(sizeof(Move));			//保存当前的头一步
-	MovedLink MovedTop = NULL;
-	long int xSPos, ySPos, xEPos, yEPos;
-	long int depth5 = 0;     //测试用的
-	long int depth4 = 0;     //测试用的
-	long int depth3 = 0;     //测试用的
-	long int depth2 = 0;     //测试用的
-	long int depth1 = 0;     //测试用的
-	Max_depth = depth;
-	int MaxMin[10] = { -10000, 10000, -10000, 10000, -10000, 10000, -10000, 10000, -10000, 10000 };		//存放每一层当前的最大最小值
+	MovedLink MovedTop = NULL;					//走过的步栈顶
+	int xSPos, ySPos, xEPos, yEPos;				//当前坐标
+	int FStepxSPos, FStepySPos, FStepxEPos, FStepyEPos;		//存储第一步走法
+	Max_depth = depth;				//最大深度
+	int MaxMin[10] = { -9999, 9999, -9999, 9999, -9999, 9999, -9999, 9999, -9999, 9999 };		//存放每一层当前的最大最小值
 	int Best_MaxMin[10] = { -10000, 10000, -10000, 10000, -10000, 10000, -10000, 10000, -10000, 10000 };	//存放当前的的最优解
 	Head = MoveGenerator(currChessBoard,(Max_depth-depth+1)%2);		//第一次产生向下一层的步伐
 	p = Head;		
@@ -93,12 +89,6 @@ MoveLink Search(int currChessBoard[][9], int depth)
 		p = p->next;	//找到搜索的最后一步
 	}
 	top = q->next;		//使top指向栈的头结点
-	length = StackLength(top);
-	//while (p->next != NULL)		//将这次搜索的步伐进栈
-	//{
-	//	p = p->next;
-	//	PushStep(&top, p);
-	//}
 	while(!IsEmptyStack(top))		//如果步伐栈不为空
 	{
 		NowNode = PopStep(&top);		//从栈中取步伐
@@ -106,26 +96,41 @@ MoveLink Search(int currChessBoard[][9], int depth)
 		ySPos = NowNode->ySPos;
 		xEPos = NowNode->xEPos;
 		yEPos = NowNode->yEPos;
+		
+		if (depth == Max_depth)
+		{
+			FStepxSPos = xSPos;
+			FStepySPos = ySPos;
+			FStepxEPos = xEPos;
+			FStepyEPos = yEPos;
+		}
 		free(NowNode);		//将节点释放
-		if (depth % 2)		//再同一级的树中决策出最大值
-		{
-			if (MaxMin[depth - 1] > Best_MaxMin[depth - 1])
-			{
-				Best_MaxMin[depth - 1] = MaxMin[depth - 1];
-			}
-			
-		}
-		else		//在同一级的树中决策出最小值
-		{
-			if (MaxMin[depth - 1] < Best_MaxMin[depth - 1])
-			{
-				Best_MaxMin[depth - 1] = MaxMin[depth - 1];
-			}
-		}
+		//if (depth % 2)		//再同一级的树中决策出最大值
+		//{
+		//	if (MaxMin[depth - 1] > Best_MaxMin[depth - 1])
+		//	{
+		//		Best_MaxMin[depth - 1] = MaxMin[depth - 1];
+		//	}
+		//}
+		//else		//在同一级的树中决策出最小值
+		//{
+		//	if (MaxMin[depth - 1] < Best_MaxMin[depth - 1])
+		//	{
+		//		Best_MaxMin[depth - 1] = MaxMin[depth - 1];
+		//	}
+		//}
 		while ((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL)&(yEPos == NULL))		//当返回到上一级的时候
 		{
 			unMakeMove(currChessBoard,&MovedTop);	//步伐返回
 			depth++;
+			if (IsEmptyStack(top))
+			{
+				while (MovedTop != NULL)
+				{
+					unMakeMove(currChessBoard, &MovedTop);
+				}
+				return BestFirstMove;
+			}
 			NowNode = PopStep(&top);			//因为刚才取出的节点是空的所以说从新取出节点
 			xSPos = NowNode->xSPos;
 			ySPos = NowNode->ySPos;
@@ -135,43 +140,37 @@ MoveLink Search(int currChessBoard[][9], int depth)
 			MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//将下一级的最大或者最小值赋给上一级
 			if (depth % 2)
 			{
-				Best_MaxMin[depth - 2] = -10000;			//重新给最大值赋值
-				MaxMin[depth - 2] = -10000;
+				Best_MaxMin[depth - 2] = 10000;			//重新给最大值赋值
+				MaxMin[depth - 2] = 9999;
+				if (MaxMin[depth - 1] > Best_MaxMin[depth - 1])
+				{
+					Best_MaxMin[depth - 1] = MaxMin[depth - 1];
+					if (depth == Max_depth)			//到达最顶层的一步的时候把最优步伐
+					{
+						BestFirstMove->xSPos = FStepxSPos;
+						BestFirstMove->ySPos = FStepySPos;
+						BestFirstMove->xEPos = FStepxEPos;
+						BestFirstMove->yEPos = FStepyEPos;
+					}
+				}
 			}
 			else
 			{
-				Best_MaxMin[depth - 2] = 10000;			//重新给最小值赋值
-				MaxMin[depth - 2] = 10000;
+				Best_MaxMin[depth - 2] = -10000;			//重新给最小值赋值
+				MaxMin[depth - 2] = -9999;
+				if (MaxMin[depth - 1] < Best_MaxMin[depth - 1])
+				{
+					Best_MaxMin[depth - 1] = MaxMin[depth - 1];
+				}
 			}
-			
-			
-		}
-		if (depth == Max_depth )		//获取当前搜索的第一步走法
-		{
-			if (MaxMin[depth - 1] > Best_MaxMin[depth - 1])
+			if (depth == Max_depth)			//更改上一步的值
 			{
-				Best_MaxMin[depth - 1] = MaxMin[depth - 1];
-				BestFirstMove->xSPos = xSPos;
-				BestFirstMove->ySPos = ySPos;
-				BestFirstMove->xEPos = xEPos;
-				BestFirstMove->yEPos = yEPos;
+				FStepxSPos = xSPos;
+				FStepySPos = ySPos;
+				FStepxEPos = xEPos;
+				FStepyEPos = yEPos;
 			}
-			depth5++;
 		}
-		if (depth == (Max_depth - 1))		//测试用的
-		{
-			depth4++;
-		}
-		if (depth == (Max_depth - 2))		//测试用的
-		{
-			depth3++;
-		}
-		if (depth == (Max_depth - 3))		//测试用的
-		{
-			depth2++;
-		}
-		
-		length = StackLength(top);
 		MakeMove(currChessBoard,&MovedTop,xSPos,ySPos,xEPos, yEPos);		//走出一步
 		if (IsBlackFail(currChessBoard))		//黑棋失败
 		{
@@ -179,7 +178,8 @@ MoveLink Search(int currChessBoard[][9], int depth)
 		}
 		if (IsRedFail(currChessBoard))		//红棋失败
 		{
-			break;
+			unMakeMove(currChessBoard, &MovedTop);
+			continue;
 		}
 		movedLength = MovedStackLength(MovedTop);
 		depth--;	//深度减一
@@ -199,8 +199,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 					yEPos = p->yEPos;
 					MakeMove(currChessBoard,&MovedTop,xSPos,ySPos, xEPos, yEPos);		//走最后一步
 					movedLength = MovedStackLength(MovedTop);
-					MaxMin[depth-1] = Evaluation(currChessBoard);		//对最后一步进行评价
-					depth1++;		//测试用的
+					MaxMin[depth-1] = Evaluation(currChessBoard,1);		//对最后一步进行评价
 					if (MaxMin[depth-1] >Best_MaxMin[depth-1])
 					{
 						Best_MaxMin[depth-1] = MaxMin[depth-1];
@@ -211,6 +210,10 @@ MoveLink Search(int currChessBoard[][9], int depth)
 				unMakeMove(currChessBoard, &MovedTop);
 				depth++;
 				MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//将下层的最大值赋给上层
+				if (MaxMin[depth - 1] < Best_MaxMin[depth - 1])
+				{
+					Best_MaxMin[depth - 1] = MaxMin[depth - 1];
+				}
 			}
 			else		//否则产生步伐并且入栈
 			{
@@ -228,11 +231,6 @@ MoveLink Search(int currChessBoard[][9], int depth)
 				(p->next)->yEPos = NULL;
 				(p->next)->next = top;		//与原本的栈相接
 				top = q->next;		//使top指向栈的头结点
-				//while (p->next != NULL)		//将这次搜索的步伐进栈
-				//{
-				//	p = p->next;
-				//	PushStep(&top, p);
-				//}
 			}
 	}
 	while (MovedTop != NULL)

@@ -59,4 +59,4 @@ void PushReleatedMove(LReleatedList* top, int xEPos, int yEPos);		//将相关联的步
 LReleatedList PopReleatedMove(LReleatedList* top);	//将相关两的步伐出栈
 int GetBingValue(int x, int y, int position[10][9]); //获取兵的价值
 LReleatedList GetReleatedPiece(int currChessboard[][9], int xSPos, int ySPos);		//获取一个棋子所相关的棋子链表,返回头结点指针
-int Evaluation(int currChessBoard[][9]);		//给一个棋盘评价
+int Evaluation(int currChessBoard[][9],bool IsRedTurn);		//给一个棋盘评价
