@@ -1,0 +1,1 @@
+this is Chinese Written by C
