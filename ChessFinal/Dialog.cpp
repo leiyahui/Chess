@@ -66,7 +66,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static bool mark=false;		//标识上次是否选定一个棋子
 	static HINSTANCE hInstance;
 	MoveLink bestMove;	//存放搜索返回的走法
-	static int depth=3;		//搜索深度
+	static int depth=5;		//搜索深度
 	switch (message)
 	{
 	case WM_CREATE:
@@ -165,6 +165,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 
 		return 0;
+
 	case WM_DESTROY:
 		DeleteObject(hBitmap);
 		PostQuitMessage(0);
