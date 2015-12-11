@@ -80,6 +80,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 	int FStepxSPos, FStepySPos, FStepxEPos, FStepyEPos;		//存储第一步走法
 	Max_depth = depth;				//最大深度
 	int depth0,depth1, depth2, depth3, depth4, depth5;		//测试使用
+	depth2 = depth3 = depth4 = 0;
 	int IsFirstdepth[10] = { 0 };		//记录是否是每层深度的第一步
 	int MaxMin[10] = { 0 };		//存放每一层当前的最大最小值
 	int Best_MaxMin[10] = { 0 };	//存放当前的的最优解
@@ -93,6 +94,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 	top = q->next;		//使top指向栈的头结点
 	while(!IsEmptyStack(top))		//如果步伐栈不为空
 	{
+		length = StackLength(top);
 		NowNode = PopStep(&top);		//从栈中取步伐
 		xSPos = NowNode->xSPos;			
 		ySPos = NowNode->ySPos;
@@ -106,10 +108,23 @@ MoveLink Search(int currChessBoard[][9], int depth)
 			FStepxEPos = xEPos;
 			FStepyEPos = yEPos;
 		}
+		if (depth == 2)
+		{
+			depth2++;
+		}
+		if (depth == 3)
+		{
+			depth3++;
+		}
+		if (depth == 4)
+		{
+			depth4++;
+		}
 		while ((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL)&&(yEPos == NULL))		//当返回到上一级的时候
 		{
 			unMakeMove(currChessBoard,&MovedTop);	//步伐返回
 			depth++;
+			length = StackLength(top);		//测试
 			if (IsEmptyStack(top))
 			{
 				while (MovedTop != NULL)
@@ -125,6 +140,8 @@ MoveLink Search(int currChessBoard[][9], int depth)
 			yEPos = NowNode->yEPos;
 			free(NowNode);
 			MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//将下一层的值赋给上一层
+			Best_MaxMin[depth - 2] = MaxMin[depth - 2] = 0;
+			IsFirstdepth[depth - 2] = 0;
 			if (IsFirstdepth[depth - 1] == 0)
 			{
 				Best_MaxMin[depth - 1] = MaxMin[depth - 1];
@@ -256,7 +273,18 @@ MoveLink Search(int currChessBoard[][9], int depth)
 				}
 			}
 		}
+		if (xSPos == 2 && ySPos == 1 && xEPos == 1 && yEPos == 1)
+		{
+			xSPos++;
+			xSPos--;
+		}
 		MakeMove(currChessBoard,&MovedTop,xSPos,ySPos,xEPos, yEPos);		//走出一步
+		movedLength = MovedStackLength(MovedTop);
+		if (movedLength >=5)
+		{
+			movedLength++;
+			movedLength--;
+		}
 		depth--;	//深度减一
 		if (IsBlackFail(currChessBoard))		//黑棋失败
 		{
@@ -271,6 +299,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 			{
 				Head = MoveGenerator(currChessBoard,depth%2);
 				IsFirstdepth[depth - 1] = 0;
+				Best_MaxMin[depth - 1] = MaxMin[depth - 1] = 0;
 				p = Head;
 				while (p->next != NULL)
 				{
@@ -291,6 +320,14 @@ MoveLink Search(int currChessBoard[][9], int depth)
 						{
 							if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])
 							{
+								while (p->next != NULL)
+								{
+									q = p;
+									p = p->next;
+									free(q);
+								}
+								unMakeMove(currChessBoard, &MovedTop);
+								IsFirstdepth[depth - 1] = 0;
 								break;
 							}
 						}
@@ -304,6 +341,14 @@ MoveLink Search(int currChessBoard[][9], int depth)
 							{
 								if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])
 								{
+									while (p->next != NULL)
+									{
+										q = p;
+										p = p->next;
+										free(q);
+									}
+									unMakeMove(currChessBoard, &MovedTop);
+									IsFirstdepth[depth - 1] = 0;
 									break;
 								}
 							}
