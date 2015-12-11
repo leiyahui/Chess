@@ -62,13 +62,11 @@ int IsRedFail(int currChessBoard[][9])		//ÅÐ¶ÏºìÆåÓÐÃ»ÓÐÊä£¬Èç¹ûÃ»ÓÐÊä·µ»Ø0£¬·ñÔ
 	}
 	return 1;
 }
-MoveLink Search(int currChessBoard[][9], int depth)
+MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊýÊÇºËÐÄËÑË÷Ëã·¨£¬¿ÉÒÔÉè¶¨ÏòÏÂËÑË÷µÄ²ãÊý£¬Ã¿Ò»²ã²úÉúµÄ²½·¥ÓëÉÏÒ»²ã²úÉúµÄ²½·¥ÒÔÒ»¸öNULL¼¸µã¸ô¿ª£¬
 {
 	int length;		//²½·¥Õ»ÖÐµÄ²½·¥ÊýÁ¿,²âÊÔÓÃµÄÒ»»áÒªÉ¾³ý
 	int movedLength;		//×ß¹ýµÄ²½·¥µÄÕ»ÖÐµÄ³¤¶È,²âÊÔÓÃÒ»»áÉ¾³ý
 	int Max_depth;				//×î´óÉî¶È
-	int sore;				//µ±Ç°µÃ·Ö
-	int Best_sore=0;		//×î´óµÃ·Ö
 	MoveLink Head;			//Ã¿´Î²úÉú²½·¥µÄÕ»
 	MoveLink top = NULL;		//±£´æËùÓÐ²½·¥µÄÕ»¶¥
 	MoveLink p,q;
@@ -77,11 +75,11 @@ MoveLink Search(int currChessBoard[][9], int depth)
 	MoveLink CurrFirstMove=(MoveLink)malloc(sizeof(Move));			//±£´æµ±Ç°µÄÍ·Ò»²½
 	MovedLink MovedTop = NULL;					//×ß¹ýµÄ²½Õ»¶¥
 	int xSPos, ySPos, xEPos, yEPos;				//µ±Ç°×ø±ê
-	int FStepxSPos, FStepySPos, FStepxEPos, FStepyEPos;		//´æ´¢µÚÒ»²½×ß·¨
+	int FStepxSPos, FStepySPos, FStepxEPos, FStepyEPos;		//´æ´¢ËÑË÷µÄµÚÒ»²ãµÄ×ß·¨
 	Max_depth = depth;				//×î´óÉî¶È
-	int depth0,depth1, depth2, depth3, depth4, depth5;		//²âÊÔÊ¹ÓÃ
+	int depth0,depth1, depth2, depth3, depth4, depth5;		//²âÊÔÓÃµÄ£¬ÓÃÀ´¼ÇÂ¼Ã¿Ò»²ãµÄ½Úµã¸öÊý
 	depth2 = depth3 = depth4 = 0;
-	int IsFirstdepth[10] = { 0 };		//¼ÇÂ¼ÊÇ·ñÊÇÃ¿²ãÉî¶ÈµÄµÚÒ»²½
+	int IsFirstdepth[10] = { 0 };		//¼ÇÂ¼ÊÇ·ñÊÇµ±Ç°¸Ã²ãËÑË÷µÄµÚÒ»²½
 	int MaxMin[10] = { 0 };		//´æ·ÅÃ¿Ò»²ãµ±Ç°µÄ×î´ó×îÐ¡Öµ
 	int Best_MaxMin[10] = { 0 };	//´æ·Åµ±Ç°µÄµÄ×îÓÅ½â
 	Head = MoveGenerator(currChessBoard,(Max_depth-depth+1)%2);		//µÚÒ»´Î²úÉúÏòÏÂÒ»²ãµÄ²½·¥
@@ -94,42 +92,42 @@ MoveLink Search(int currChessBoard[][9], int depth)
 	top = q->next;		//Ê¹topÖ¸ÏòÕ»µÄÍ·½áµã
 	while(!IsEmptyStack(top))		//Èç¹û²½·¥Õ»²»Îª¿Õ
 	{
-		length = StackLength(top);
+		length = StackLength(top);		//²âÊÔ
 		NowNode = PopStep(&top);		//´ÓÕ»ÖÐÈ¡²½·¥
 		xSPos = NowNode->xSPos;			
 		ySPos = NowNode->ySPos;
 		xEPos = NowNode->xEPos;
 		yEPos = NowNode->yEPos;
 		free(NowNode);		//½«½ÚµãÊÍ·Å
-		if (depth == 5)
+		if (depth == 5)		//µÚÒ»²ãµÄµÚÒ»²½£¬Õâ¸öifµÄÓï¾äÖ»Ö´ÐÐÒ»´Î
 		{
 			FStepxSPos = xSPos;					//¼ÇÂ¼ÏÂÕâÒ»´ÎËÑËùµÄµÚÒ»²½
 			FStepySPos = ySPos;
 			FStepxEPos = xEPos;
 			FStepyEPos = yEPos;
 		}
-		if (depth == 2)
-		{
-			depth2++;
+		if (depth == 2)						   //²âÊÔ
+		{									   //²âÊÔ
+			depth2++;						   //²âÊÔ
+		}									   //²âÊÔ
+		if (depth == 3)						   //²âÊÔ
+		{									   //²âÊÔ
+			depth3++;						   //²âÊÔ
+		}									   //²âÊÔ
+		if (depth == 4)						   //²âÊÔ
+		{									   //²âÊÔ
+			depth4++;						   //²âÊÔ
 		}
-		if (depth == 3)
-		{
-			depth3++;
-		}
-		if (depth == 4)
-		{
-			depth4++;
-		}
-		while ((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL)&&(yEPos == NULL))		//µ±·µ»Øµ½ÉÏÒ»¼¶µÄÊ±ºò
+		while ((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL)&&(yEPos == NULL))		//µ±·µ»Øµ½ÉÏÒ»¼¶ËÑË÷µÄÊ±ºò
 		{
 			unMakeMove(currChessBoard,&MovedTop);	//²½·¥·µ»Ø
 			depth++;
 			length = StackLength(top);		//²âÊÔ
-			if (IsEmptyStack(top))
+			if (IsEmptyStack(top))			//µ½ËÑË÷µÄ×îºó½×¶ÎÊ±£¬²½·¥Õ»ÖÐ»áÊ£ÏÂ¼¸¸öNULL£¬Ò»°ã³ÌÐò¶¼»áÔÚÕâÀïÍË³ö
 			{
 				while (MovedTop != NULL)
 				{
-					unMakeMove(currChessBoard, &MovedTop);
+					unMakeMove(currChessBoard, &MovedTop);		//ÕâÊ±»¹ÓÐÒ»Ð©ÒÑ¾­×ß¹ýµÄ²½·¥£¬ÒªÈ«²¿·µ»Ø
 				}
 				return BestFirstMove;
 			}
@@ -139,14 +137,14 @@ MoveLink Search(int currChessBoard[][9], int depth)
 			xEPos = NowNode->xEPos;
 			yEPos = NowNode->yEPos;
 			free(NowNode);
-			MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//½«ÏÂÒ»²ãµÄÖµ¸³¸øÉÏÒ»²ã
-			Best_MaxMin[depth - 2] = MaxMin[depth - 2] = 0;
-			IsFirstdepth[depth - 2] = 0;
-			if (IsFirstdepth[depth - 1] == 0)
+			MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//½«ÏÂÒ»²ãµÄ×îÓÅÖµ¸³¸øÉÏÒ»²ã£¬ÓÃÓÚ¼ôÖ¦
+			Best_MaxMin[depth - 2] = MaxMin[depth - 2] = 0;		//ÕâÊ±ÉÏÒ»ÂÖµÄÏÂÒ»²ãËÑË÷ÒÑ¾­Íê³É£¬ËùÒÔËµÒªÖØÐÂ¸´Î»
+			IsFirstdepth[depth - 2] = 0;			//Ò²ÊÇ¸´Î»
+			if (IsFirstdepth[depth - 1] == 0)		//ÕâÒ»ÂÖµÄÕâÒ»²ãËÑË÷ÊÇ·ñÊÇµÚÒ»´Î½øÐÐ
 			{
-				Best_MaxMin[depth - 1] = MaxMin[depth - 1];
-				IsFirstdepth[depth - 1]++;
-				if (depth == Max_depth)
+				Best_MaxMin[depth - 1] = MaxMin[depth - 1];		//½«ÕâÒ»²ãËÑË÷µÃµ½µÄ½á¹û¸³¸øÕâÒ»²ãµÄ×îÓÅ½â£¬
+				IsFirstdepth[depth - 1]++;				//ÕâÒ»²ãËÑË÷µÄ´ÎÊý¼Ó1
+				if (depth == Max_depth)		//Èç¹ûÊÇ×î¶¥²ãÁË£¬ÄÇÃ´¾Í½«µÚÒ»ÖÖ×ß·¨¸³¸ø×îÓÅ½â
 				{
 					BestFirstMove->xSPos = FStepxSPos;
 					BestFirstMove->ySPos = FStepySPos;
@@ -157,15 +155,15 @@ MoveLink Search(int currChessBoard[][9], int depth)
 					FStepxEPos = xEPos;
 					FStepyEPos = yEPos;
 				}
-				if (depth % 2)
+				if (depth % 2)		//ÆæÊý²ã
 				{
-					if (depth != Max_depth)
+					if (depth != Max_depth)		//²»ÄÜÊÇ×î¶¥²ã£¬ÒòÎª×î¶¥ÉÏÒÑ¾­Ã»ÓÐÉÏÒ»¼¶ÁË£¬²»ÐèÒª¼ôÖ¦
 					{
-						if (IsFirstdepth[depth] != 0)
+						if (IsFirstdepth[depth] != 0)		//Õâ´ÎËÑË÷µÄÉÏÒ»²ãÊÇ·ñÒÑ¾­ÓÐÖµÁË
 						{
-							if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])
+							if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])		//µ±Ç°ÕâÒ»´ÎËÑË÷µÄ×îÓÅ½â´óÓÚÉÏÒ»²ãµÄ×îÓÅ½â£¬ËùÒÔËµÃ»ÓÐ±éÀúÏÂÈ¥µÄ±ØÒªÁË£¬¿Ï¶¨²»·ûºÏ
 							{
-								do			//´ËÊ±µ¹ÊýµÚ¶þ²ãÃ»ÓÐ±éÀúÏÂÈ¥µÄÐèÒªÁË
+								do			
 								{
 									NowNode = PopStep(&top);
 									xSPos = NowNode->xSPos;
@@ -173,8 +171,8 @@ MoveLink Search(int currChessBoard[][9], int depth)
 									xEPos = NowNode->xEPos;
 									yEPos = NowNode->yEPos;
 									free(NowNode);
-								} while (!((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL) && (yEPos == NULL)));		//Ñ­»·Ö±µ½µ¹ÊýµÚ¶þ²ã±éÀúÍê
-								unMakeMove(currChessBoard, &MovedTop);
+								} while (!((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL) && (yEPos == NULL)));		//Ñ­»·Ö±µ½¸Ã²ãËÑË÷µÄµ±Ç°²ã½áÊø
+								unMakeMove(currChessBoard, &MovedTop);		//·µ»ØÒ»²½
 								IsFirstdepth[depth - 1] = 0;
 								depth++;
 							}
@@ -203,15 +201,15 @@ MoveLink Search(int currChessBoard[][9], int depth)
 					}
 				}
 			}
-			else
+			else			//Èç¹û²»ÊÇÕâÒ»ÂÖËÑË÷µÄµÚÒ»´ÎËÑË÷
 			{
 				if (depth % 2)				//Õâ²ãÊÇÐèÒª×î´óÖµµÄ
 				{
 					IsFirstdepth[depth - 1]++;
-					if (MaxMin[depth - 1] > Best_MaxMin[depth - 1])
+					if (MaxMin[depth - 1] > Best_MaxMin[depth - 1])			//µ±Õâ´ÎËÑË÷µÄÖµ´óÓÚÒÔÇ°Õâ´ÎËÑË÷µÄ×î´óÖµÊ±
 					{
 						Best_MaxMin[depth - 1] = MaxMin[depth - 1];
-						if (depth == Max_depth)
+						if (depth == Max_depth)			//Èç¹ûÊÇµÚÒ»²ãµÄ»°£¬¾Í°Ñ²½·¥±£ÁôÏÂÀ´
 						{
 							BestFirstMove->xSPos = FStepxSPos;
 							BestFirstMove->ySPos = FStepySPos;
@@ -245,7 +243,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 						}
 					}
 				}
-				else
+				else		//Õâ²ãÐèÒª×î´óÖµ
 				{
 					IsFirstdepth[depth - 1]++;
 					if (MaxMin[depth - 1] < Best_MaxMin[depth - 1])
@@ -273,18 +271,8 @@ MoveLink Search(int currChessBoard[][9], int depth)
 				}
 			}
 		}
-		if (xSPos == 2 && ySPos == 1 && xEPos == 1 && yEPos == 1)
-		{
-			xSPos++;
-			xSPos--;
-		}
 		MakeMove(currChessBoard,&MovedTop,xSPos,ySPos,xEPos, yEPos);		//×ß³öÒ»²½
 		movedLength = MovedStackLength(MovedTop);
-		if (movedLength >=5)
-		{
-			movedLength++;
-			movedLength--;
-		}
 		depth--;	//Éî¶È¼õÒ»
 		if (IsBlackFail(currChessBoard))		//ºÚÆåÊ§°Ü
 		{
@@ -295,9 +283,9 @@ MoveLink Search(int currChessBoard[][9], int depth)
 			unMakeMove(currChessBoard, &MovedTop);
 			continue;
 		}
-			if (depth ==1)		//»¹²î×îºóÒ»²½Ã»ÓÐ·ÃÎÊ
+			if (depth ==1)		//»¹²î×îºóÒ»²½Ã»ÓÐ·ÃÎÊ,ÕâËÑË÷ÐèÒª½øÐÐÆÀ·Ö,
 			{
-				Head = MoveGenerator(currChessBoard,depth%2);
+				Head = MoveGenerator(currChessBoard,depth%2);  //Õâ´Î²úÉúµÄ²½·¥²»ÐèÒª½øÕ»,
 				IsFirstdepth[depth - 1] = 0;
 				Best_MaxMin[depth - 1] = MaxMin[depth - 1] = 0;
 				p = Head;
@@ -318,7 +306,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 						Best_MaxMin[depth - 1] = MaxMin[depth - 1];
 						if (IsFirstdepth[depth] != 0)
 						{
-							if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])
+							if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])		//ÒÑ¾­Ã»ÓÐ±ØÒª±éÀúÏÂÈ¥ÁË
 							{
 								while (p->next != NULL)
 								{
@@ -326,7 +314,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 									p = p->next;
 									free(q);
 								}
-								unMakeMove(currChessBoard, &MovedTop);
+								unMakeMove(currChessBoard, &MovedTop);	
 								IsFirstdepth[depth - 1] = 0;
 								break;
 							}
@@ -360,7 +348,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 				unMakeMove(currChessBoard, &MovedTop);			//µ¹ÊýµÚ¶þ²½·µ»Ø
 				depth++;
 				MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//½«ÏÂ²ãµÄ×î´óÖµ¸³¸øÉÏ²ã
-				if (IsFirstdepth[depth-1] == 0)
+				if (IsFirstdepth[depth-1] == 0)		//ÕâÂÖËÑË÷µÄµ¹ÊýµÚ¶þ²ãÊÇÊÇµÚÒ»´ÎµÃ³ö½á¹û
 				{
 					Best_MaxMin[depth - 1] = MaxMin[depth - 2];
 					IsFirstdepth[depth - 1]++;
@@ -383,7 +371,7 @@ MoveLink Search(int currChessBoard[][9], int depth)
 						}
 					}
 				}
-				else
+				else		//²»ÊÇµÚÒ»´ÎµÄµ½½á¹û
 				{
 					IsFirstdepth[depth - 1]++;
 					if (MaxMin[depth - 1] < Best_MaxMin[depth - 1])

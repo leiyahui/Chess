@@ -91,6 +91,7 @@
     <ClInclude Include="IsValidateMove.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="MoveGenerator.h" />
+    <ClInclude Include="PostionValue.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Search.h" />
   </ItemGroup>

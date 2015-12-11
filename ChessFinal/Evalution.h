@@ -1,4 +1,5 @@
 #include"chess.h"
+#include"PostionValue.h"
 //价值的定义
 #define BASEVALUE_PAWN 100
 #define BASEVALUE_BISHOP 250
