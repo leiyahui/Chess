@@ -461,11 +461,6 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 				p = PopReleatedMove(&top);
 				xEPos = p->xEPos;
 				yEPos = p->yEPos;
-				if (yEPos == 9)
-				{
-					yEPos++;
-					yEPos--;
-				}
 				free(p);
 				echess = currChessBoard[xEPos][yEPos];
 				if (echess == NO_CHESS)
@@ -524,7 +519,7 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 			if (xchess != NO_CHESS)
 			{
 				nHalfValue = m_BaseValue[xchess] / 16;
-				ChessValue[i][j] += m_FlexValue[xchess];
+				ChessValue[i][j] += m_BaseValue[xchess];
 				if (IsRed(xchess))		//如果是红色棋子的话
 				{
 					if (Attack[i][j])	//如果该棋子被威胁的话
@@ -617,7 +612,7 @@ int Evaluation(int currChessBoard[][9], bool IsRedTurn)
 		}
 	}
 	SumBValue = SumRValue = 0;
-	for (i = 0; i++; i < 10)
+	for (i = 0; i<10; i ++)
 	{
 		for (j = 0; j < 9; j++)
 		{

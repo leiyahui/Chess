@@ -161,7 +161,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 					{
 						if (IsFirstdepth[depth] != 0)		//Õâ´ÎËÑË÷µÄÉÏÒ»²ãÊÇ·ñÒÑ¾­ÓĞÖµÁË
 						{
-							if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])		//µ±Ç°ÕâÒ»´ÎËÑË÷µÄ×îÓÅ½â´óÓÚÉÏÒ»²ãµÄ×îÓÅ½â£¬ËùÒÔËµÃ»ÓĞ±éÀúÏÂÈ¥µÄ±ØÒªÁË£¬¿Ï¶¨²»·ûºÏ
+							if (Best_MaxMin[depth - 1] >= Best_MaxMin[depth])		//µ±Ç°ÕâÒ»´ÎËÑË÷µÄ×îÓÅ½â´óÓÚÉÏÒ»²ãµÄ×îÓÅ½â£¬ËùÒÔËµÃ»ÓĞ±éÀúÏÂÈ¥µÄ±ØÒªÁË£¬¿Ï¶¨²»·ûºÏ
 							{
 								do			
 								{
@@ -183,7 +183,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 				{
 					if (IsFirstdepth[depth] != 0)
 					{
-						if (Best_MaxMin[depth - 1] < Best_MaxMin[depth])
+						if (Best_MaxMin[depth - 1] <= Best_MaxMin[depth])
 						{
 							do			//´ËÊ±µ¹ÊıµÚ¶ş²ãÃ»ÓĞ±éÀúÏÂÈ¥µÄĞèÒªÁË
 							{
@@ -206,7 +206,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 				if (depth % 2)				//Õâ²ãÊÇĞèÒª×î´óÖµµÄ
 				{
 					IsFirstdepth[depth - 1]++;
-					if (MaxMin[depth - 1] > Best_MaxMin[depth - 1])			//µ±Õâ´ÎËÑË÷µÄÖµ´óÓÚÒÔÇ°Õâ´ÎËÑË÷µÄ×î´óÖµÊ±
+					if (MaxMin[depth - 1] >= Best_MaxMin[depth - 1])			//µ±Õâ´ÎËÑË÷µÄÖµ´óÓÚÒÔÇ°Õâ´ÎËÑË÷µÄ×î´óÖµÊ±
 					{
 						Best_MaxMin[depth - 1] = MaxMin[depth - 1];
 						if (depth == Max_depth)			//Èç¹ûÊÇµÚÒ»²ãµÄ»°£¬¾Í°Ñ²½·¥±£ÁôÏÂÀ´
@@ -224,7 +224,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 						{
 							if (IsFirstdepth[depth] != 0)
 							{
-								if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])
+								if (Best_MaxMin[depth - 1] >= Best_MaxMin[depth])
 								{
 									do			//´ËÊ±µ¹ÊıµÚ¶ş²ãÃ»ÓĞ±éÀúÏÂÈ¥µÄĞèÒªÁË
 									{
@@ -246,12 +246,12 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 				else		//Õâ²ãĞèÒª×î´óÖµ
 				{
 					IsFirstdepth[depth - 1]++;
-					if (MaxMin[depth - 1] < Best_MaxMin[depth - 1])
+					if (MaxMin[depth - 1] <= Best_MaxMin[depth - 1])
 					{
 						Best_MaxMin[depth - 1] = MaxMin[depth - 1];
 						if (IsFirstdepth[depth] != 0)
 						{
-							if (Best_MaxMin[depth - 1] < Best_MaxMin[depth])		//½øĞĞ¼ôÖ¦
+							if (Best_MaxMin[depth - 1] <= Best_MaxMin[depth])		//½øĞĞ¼ôÖ¦
 							{
 								do			//´ËÊ±µ¹ÊıµÚ¶ş²ãÃ»ÓĞ±éÀúÏÂÈ¥µÄĞèÒªÁË
 								{
@@ -301,12 +301,17 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 					MakeMove(currChessBoard,&MovedTop,xSPos,ySPos, xEPos, yEPos);		//×ß×îºóÒ»²½
 					movedLength = MovedStackLength(MovedTop);
 					MaxMin[depth-1] = Evaluation(currChessBoard,1);		//¶Ô×îºóÒ»²½½øĞĞÆÀ¼Û
+					if (MaxMin[depth - 1] != 0)				//²âÊÔ´úÂë
+					{
+						MaxMin[depth - 1]++;
+						MaxMin[depth - 1]--;
+					}
 					if (IsFirstdepth[depth-1] == 0)
 					{
 						Best_MaxMin[depth - 1] = MaxMin[depth - 1];
 						if (IsFirstdepth[depth] != 0)
 						{
-							if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])		//ÒÑ¾­Ã»ÓĞ±ØÒª±éÀúÏÂÈ¥ÁË
+							if (Best_MaxMin[depth - 1] >= Best_MaxMin[depth])		//ÒÑ¾­Ã»ÓĞ±ØÒª±éÀúÏÂÈ¥ÁË
 							{
 								while (p->next != NULL)
 								{
@@ -327,7 +332,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 							Best_MaxMin[depth - 1] = MaxMin[depth - 1];
 							if (IsFirstdepth[depth] != 0)
 							{
-								if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])
+								if (Best_MaxMin[depth - 1] >= Best_MaxMin[depth])
 								{
 									while (p->next != NULL)
 									{
@@ -354,7 +359,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 					IsFirstdepth[depth - 1]++;
 					if (IsFirstdepth[depth] != 0)
 					{
-						if (Best_MaxMin[depth - 1] > Best_MaxMin[depth])
+						if (Best_MaxMin[depth - 1] <= Best_MaxMin[depth])
 						{
 							do			//´ËÊ±µ¹ÊıµÚ¶ş²ãÃ»ÓĞ±éÀúÏÂÈ¥µÄĞèÒªÁË
 							{
@@ -379,7 +384,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 						Best_MaxMin[depth - 1] = MaxMin[depth - 1];
 						if (IsFirstdepth[depth] != 0)
 						{
-							if (Best_MaxMin[depth - 1] < Best_MaxMin[depth])
+							if (Best_MaxMin[depth - 1] <= Best_MaxMin[depth])
 							{
 								do			//´ËÊ±µ¹ÊıµÚ¶ş²ãÃ»ÓĞ±éÀúÏÂÈ¥µÄĞèÒªÁË
 								{
