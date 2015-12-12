@@ -122,6 +122,11 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 		{
 			unMakeMove(currChessBoard,&MovedTop);	//²½·¥·µ»Ø
 			depth++;
+			if (depth == 5)			//²âÊÔ
+			{
+				depth++;
+				depth--;
+			}
 			length = StackLength(top);		//²âÊÔ
 			if (IsEmptyStack(top))			//µ½ËÑË÷µÄ×îºó½×¶ÎÊ±£¬²½·¥Õ»ÖĞ»áÊ£ÏÂ¼¸¸öNULL£¬Ò»°ã³ÌĞò¶¼»áÔÚÕâÀïÍË³ö
 			{
@@ -136,6 +141,11 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 			ySPos = NowNode->ySPos;
 			xEPos = NowNode->xEPos;
 			yEPos = NowNode->yEPos;
+			if (xSPos == 0 && ySPos == 0 && xEPos == 2 && yEPos == 0)
+			{
+				depth++;
+				depth--;
+			}
 			free(NowNode);
 			MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//½«ÏÂÒ»²ãµÄ×îÓÅÖµ¸³¸øÉÏÒ»²ã£¬ÓÃÓÚ¼ôÖ¦
 			Best_MaxMin[depth - 2] = MaxMin[depth - 2] = 0;		//ÕâÊ±ÉÏÒ»ÂÖµÄÏÂÒ»²ãËÑË÷ÒÑ¾­Íê³É£¬ËùÒÔËµÒªÖØĞÂ¸´Î»
@@ -172,9 +182,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 									yEPos = NowNode->yEPos;
 									free(NowNode);
 								} while (!((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL) && (yEPos == NULL)));		//Ñ­»·Ö±µ½¸Ã²ãËÑË÷µÄµ±Ç°²ã½áÊø
-								unMakeMove(currChessBoard, &MovedTop);		//·µ»ØÒ»²½
 								IsFirstdepth[depth - 1] = 0;
-								depth++;
 							}
 						}
 					}
@@ -194,9 +202,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 								yEPos = NowNode->yEPos;
 								free(NowNode);
 							} while (!((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL) && (yEPos == NULL)));		//Ñ­»·Ö±µ½µ¹ÊıµÚ¶ş²ã±éÀúÍê
-							unMakeMove(currChessBoard, &MovedTop);
 							IsFirstdepth[depth - 1] = 0;
-							depth++;
 						}
 					}
 				}
@@ -235,9 +241,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 										yEPos = NowNode->yEPos;
 										free(NowNode);
 									} while (!((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL) && (yEPos == NULL)));		//Ñ­»·Ö±µ½µ¹ÊıµÚ¶ş²ã±éÀúÍê
-									unMakeMove(currChessBoard, &MovedTop);
 									IsFirstdepth[depth - 1] = 0;
-									depth++;
 								}
 							}
 						}
@@ -262,9 +266,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 									yEPos = NowNode->yEPos;
 									free(NowNode);
 								} while (!((xSPos == NULL) && (ySPos == NULL) && (xEPos == NULL) && (yEPos == NULL)));		//Ñ­»·Ö±µ½µ¹ÊıµÚ¶ş²ã±éÀúÍê
-								unMakeMove(currChessBoard, &MovedTop);
 								IsFirstdepth[depth - 1] = 0;
-								depth++;
 							}
 						}
 					}
@@ -355,7 +357,7 @@ MoveLink Search(int currChessBoard[][9], int depth)		//Õâ¸öº¯ÊıÊÇºËĞÄËÑË÷Ëã·¨£¬¿
 				MaxMin[depth - 1] = Best_MaxMin[depth - 2];		//½«ÏÂ²ãµÄ×î´óÖµ¸³¸øÉÏ²ã
 				if (IsFirstdepth[depth-1] == 0)		//ÕâÂÖËÑË÷µÄµ¹ÊıµÚ¶ş²ãÊÇÊÇµÚÒ»´ÎµÃ³ö½á¹û
 				{
-					Best_MaxMin[depth - 1] = MaxMin[depth - 2];
+					Best_MaxMin[depth - 1] = MaxMin[depth - 1];
 					IsFirstdepth[depth - 1]++;
 					if (IsFirstdepth[depth] != 0)
 					{
