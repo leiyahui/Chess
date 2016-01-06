@@ -1,1 +1,1 @@
-this is Chinese Written by C
+this is Chinese Chess Written by C
