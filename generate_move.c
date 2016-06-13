@@ -1,16 +1,100 @@
-#include "movementGenerator.h"
-void generate_king_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count ,int movement move_array[][128])
+#include "generate_move.h"
+void generate_king_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count ,movement move_array[][128])
 {
     int i;
     int to;
     for(i=0;i<4;i++)
     {
         to=from+king_dir[i];
-        if(
-        
-        
+        if(is_valid_pos(king_dir,to))
+        {
+            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            {
+                add_movement(move_array,depth,&count,from,to);
+            }
+        }
+    }
+}
+void generate_adviser_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+{
+    int i;
+    int to;
+    for(i=0;i<4;i++)
+    {
+        to=from+adviser_move[i];
+        if(is_valid_pos(adviser_pos,to))
+        {
+            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            {
+                add_movement(move_array,depth,&count,from,to);
+            }
+        }
+    }
+}
+
+void generate_elephant_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+{
+    int i;
+    int to;
+    int check;
+    for(i=0;i<8;i++)
+    {
+        to=from+elephant_move[i];
+        check=from+elephant_check[i];
+        if(is_valid_pos(adviser_pos,to)&&curr_chess_board[check]==0)
+        {
+            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            {
+                add_movement(move_array,depth,&count,from,to);
+            }
+        }
+    }
+}
+
+void generate_horse_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+{
+    int i;
+    int to,check;
+    for(i=0;i<8;i++)
+    {
+        to=from+horse_move[i];
+        check=from+horse_check[i];
+        if(is_valid_pos(adviser_pos,to)&&curr_chess_board[check]==0)
+        {
+            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            {
+                add_movement(move_array,depth,&count,from,to);
+            }
+        }
+    }
+}
+
+/*void generate_charoit_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+{
+    int i;
+    int to;
+    for(i=0;i<4;i++)
+    {
+        to=from+charoit_move[i];
+        check=from+horse_check[i];
+        if(is_valid_pos(adviser_pos,to)&&curr_chess_board[check]==0)
+        {
+            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            {
+                add_movement(move_array,depth,&count,from,to);
+            }
+        }
+    }
+}*/
+
+void add_movement(movement move_array[][128],int depth,int* count,unsigned char from,unsigned char to)
+{
+    move_array[depth][*count].from=from;
+    move_array[depth][*count].to=to;
+    *count++;
+}
     
-void generate_move(unsigned char curr_chess_board[], int depth,movement move_array[][128])		//走法产生器,i=0该黑子走，否则该红子走
+/*void generate_move(unsigned char curr_chess_board[], int depth,movement move_array[][128])		//走法产生器,i=0该黑子走，否则该红子走
 {
 	int fromt,to;
 	int pos,chess;
@@ -1391,4 +1475,4 @@ void generate_move(unsigned char curr_chess_board[], int depth,movement move_arr
         }
 	}
 	return Head;
-}
+}*/
