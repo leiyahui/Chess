@@ -1,17 +1,31 @@
 #include "movementGenerator.h"
-
-movement* generate_move(int curr_chess_board[][9], int red_turn,int i,int j)		//走法产生器,i=0该黑子走，否则该红子走
+void generate_king_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count ,int movement move_array[][128])
 {
-	int xspos, yspos, xepos, yepos;
-	int chess;
+    int i;
+    int to;
+    for(i=0;i<4;i++)
+    {
+        to=from+king_dir[i];
+        if(
+        
+        
+    
+void generate_move(unsigned char curr_chess_board[], int depth,movement move_array[][128])		//走法产生器,i=0该黑子走，否则该红子走
+{
+	int fromt,to;
+	int pos,chess;
 	int m, n;
-	movement* head = (movement* )malloc(sizeof(movement));
-	movement* p ;
-	p = head;
-	movement* q;
+    int i,j;
+    int is_red_turn;
+    is_red_turn%=2;
 	if (red_turn)
 	{
-				chess = curr_chess_board[i][j];
+        for(i=3;i++;i<=11)
+        {
+            for(j=3;j++;j<=12)
+            {
+                pos=i<<4+j;    
+				chess = curr_chess_board[pos];
 				switch (chess)
 				{
 				case NO_CHESS:		//没有棋子
@@ -1373,6 +1387,8 @@ movement* generate_move(int curr_chess_board[][9], int red_turn,int i,int j)		//
 						}
 					}
 				}
+            }
+        }
 	}
 	return Head;
 }
