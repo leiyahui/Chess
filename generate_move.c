@@ -6,7 +6,7 @@ void generate_king_move(unsigned char curr_chess_board[],unsigned char from,int 
     for(i=0;i<4;i++)
     {
         to=from+king_dir[i];
-        if(is_valid_pos(king_dir,to))
+        if(is_valid_pos(king_pos,to))
         {
             if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
             {
@@ -41,7 +41,7 @@ void generate_elephant_move(unsigned char curr_chess_board[],unsigned char from,
     {
         to=from+elephant_move[i];
         check=from+elephant_check[i];
-        if(is_valid_pos(adviser_pos,to)&&curr_chess_board[check]==0)
+        if(is_valid_pos(elephant_pos,to)&&curr_chess_board[check]==0)
         {
             if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
             {
@@ -59,7 +59,7 @@ void generate_horse_move(unsigned char curr_chess_board[],unsigned char from,int
     {
         to=from+horse_move[i];
         check=from+horse_check[i];
-        if(is_valid_pos(adviser_pos,to)&&curr_chess_board[check]==0)
+        if(is_valid_pos(horse_pos,to)&&curr_chess_board[check]==NO_CHESS)
         {
             if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
             {
@@ -69,23 +69,104 @@ void generate_horse_move(unsigned char curr_chess_board[],unsigned char from,int
     }
 }
 
-/*void generate_charoit_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+void generate_charoit_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
 {
-    int i;
+    int i,j;
     int to;
     for(i=0;i<4;i++)
     {
-        to=from+charoit_move[i];
-        check=from+horse_check[i];
-        if(is_valid_pos(adviser_pos,to)&&curr_chess_board[check]==0)
+        j=1;
+        to=from+charoit_dir[i]*j;
+        while(to<256&&to>=0&&curr_chess_board[to]==NO_CHESS)        //position without chess
         {
-            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            if(is_valid_pos(charoit_pos,to))
             {
                 add_movement(move_array,depth,&count,from,to);
             }
+            j++;
+            to=from+charoit_dir[i]*j;
+        }
+        if(to>=0&&to<256)                   //the only one position with chess
+        {
+            if(is_valid_pos(charoit_pos,to))
+            {
+                if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+                {
+                    add_movement(move_array,depth,&count,from,to);
+                }
+            }
         }
     }
-}*/
+}
+void generate_canon_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+{
+    int i,j;
+    int to
+    for(i=0;i<4;i++)
+    {
+        j=1;
+        to=from+canon_dir[i]*j;
+        while(to<256&&to>=0&&curr_chess_board[to]==NO_CHESS)        //position without chess
+        {
+            if(is_valid_pos(charoit_pos,to))
+            {
+                add_movement(move_array,depth,&count,from,to);
+            }
+            j++;
+            to=from+charoit_dir[i]*j;
+        }
+        j++;
+        to=from+charoit_move[i]*j;     
+        /*clear postion without chess after one one position with chess */
+        while(to>=0&&to<256&&curr_chess_board[to]==NO_CHESS)
+        {
+           j++;
+           to=from+charoit_dir[i]*j;
+        }
+        if(to>=0&&to<256)
+        {
+            if(is_valid_pos(charoit_pos,to))
+            {
+                if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+                {
+                    add_movement(move_array,depth,&count,from,to);
+                }
+            }
+        }
+    }
+}
+void generate_rpawn_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+{
+    int i;
+    int to;
+    for(i=0;i<3;i++)
+    {
+        to=from+rpawn_dir[i];
+        if(is_valid_pos(r_pawn_pos,to))
+        {
+            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            {
+                add_movement(move_arrary,depth,&count,from,to);
+            }
+        }
+    }
+}
+void generate_bpawn_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+{
+    int i;
+    int to;
+    for(i=0;i<3;i++)
+    {
+        to=from+bpawn_dir[i];
+        if(is_valid_pos(b_pawn_pos,to))
+        {
+            if(!is_same_color(curr_chess_board[from],curr_chess_board[to]))
+            {
+                add_movement(move_arrary,depth,&count,from,to);
+            }
+        }
+    }
+}
 
 void add_movement(movement move_array[][128],int depth,int* count,unsigned char from,unsigned char to)
 {
