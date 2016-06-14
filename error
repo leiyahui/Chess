@@ -1,0 +1,15 @@
+/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o: In function `_start':
+(.text+0x20): undefined reference to `main'
+/tmp/ccsIqQU3.o: In function `generate_king_move':
+generate_move.c:(.text+0x4b): undefined reference to `is_valid_pos'
+/tmp/ccsIqQU3.o: In function `generate_adviser_move':
+generate_move.c:(.text+0xcb): undefined reference to `is_valid_pos'
+/tmp/ccsIqQU3.o: In function `generate_elephant_move':
+generate_move.c:(.text+0x163): undefined reference to `is_valid_pos'
+/tmp/ccsIqQU3.o: In function `generate_horse_move':
+generate_move.c:(.text+0x213): undefined reference to `is_valid_pos'
+/tmp/ccsIqQU3.o: In function `generate_chariot_move':
+generate_move.c:(.text+0x2bb): undefined reference to `is_valid_pos'
+/tmp/ccsIqQU3.o:generate_move.c:(.text+0x343): more undefined references to `is_valid_pos' follow
+collect2: error: ld returned 1 exit status
+make: *** [move_generate.o] Error 1

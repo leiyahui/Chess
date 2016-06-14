@@ -1,5 +1,5 @@
 /*judge whether the chess is in right position*/
-const unsigned char king_pos{256}=
+const unsigned char king_pos[256]=
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
