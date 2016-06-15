@@ -1,4 +1,4 @@
-#include"Move.h"
+#include"moved.h"
 void init_moved_stack(made_move_stack* stack)
 {
     stack->top=stack->base=(made_move*)malloc(sizeof(made_move)*STACK_SIZE);

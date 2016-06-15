@@ -1,4 +1,6 @@
 /*judge whether the chess is in right position*/
+#ifndef _IS_VALID_POS_H
+#define _IS_VALID_POS_H
 const unsigned char king_pos[256]=
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
@@ -115,3 +117,4 @@ const unsigned char b_pawn_pos[256]=
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0
 };
 bool is_valid_pos(const unsigned char chess_pos[],unsigned char pos);
+#endif

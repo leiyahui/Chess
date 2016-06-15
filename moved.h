@@ -20,8 +20,8 @@ Movedstack Pop(made_move_stack* top);
 int MovedStackLength(Movedstack top);		//走过步伐栈的长度
 void MakeMove(int currChessBoard[][9],Movedstack* top, int xSPos, int ySPos, int xEPos, int yEPos);		//走一步并且把步伐记录进入栈中
 void unMakeMove(int currChessBoar[][9],Movedstack* top);	//返回已经走过的步伐并且出栈*/
-#ifndef _MOVE_H
-#define _MOVE_H
+#ifndef _MOVED_H
+#define _MOVED_H
 
 #define STACK_SIZE 10
 #include<string.h>

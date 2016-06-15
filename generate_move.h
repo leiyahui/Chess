@@ -1,6 +1,6 @@
 /*generator move*/
-#ifndef _MOVEGENERATOR_H
-#define _MOVEGENERATOR_H
+#ifndef _GENERATE_MOVE_H
+#define _GENERATE_MOVE_H
 #include"chess.h"
 #include"is_valid_pos.h"
 typedef struct _movement     

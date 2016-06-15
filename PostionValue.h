@@ -1,9 +1,9 @@
 /*Chess value in each postion*/
 #ifndef _POSITION_VALUE_H
 #define _POSITION_VALUE_H
-static const int B_KingPos[10][9]=
+static const unsigned char B_KingPos[10][9]=
 {
-	0, 0, 0, 15, 20, 15, 0, 0, 0,
+    	0, 0, 0, 15, 20, 15, 0, 0, 0,
 		0, 0, 0, 10, 10, 10, 0, 0, 0,
 		0, 0, 0, 1, 1, 1, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -14,7 +14,7 @@ static const int B_KingPos[10][9]=
 		0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-static const int R_KingPos[10][9] =
+static const unsigned char R_KingPos[10][9] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -27,7 +27,7 @@ static const int R_KingPos[10][9] =
 	0, 0, 0, 10, 10, 10, 0, 0, 0,
 	0, 0, 0, 15, 20, 15, 0, 0, 0
 };
-static const int B_AdviserPos[10][9] =
+static const unsigned char B_AdviserPos[10][9] =
 {
 	0, 0, 0, 30, 0, 30, 0, 0, 0,
 	0, 0, 0, 0, 22, 10, 0, 0, 0,
@@ -40,7 +40,7 @@ static const int B_AdviserPos[10][9] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-static const int R_AdviserPos[10][9] =
+static const unsigned char R_AdviserPos[10][9] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -54,7 +54,7 @@ static const int R_AdviserPos[10][9] =
 	0, 0, 0, 30, 0, 30, 0, 0, 0
 
 };
-static const int B_ElephantPos[10][9] =
+static const unsigned char B_ElephantPos[10][9] =
 {
 	0, 0, 30, 0, 0, 0, 30, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -67,7 +67,7 @@ static const int B_ElephantPos[10][9] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0
 };
-static const int R_ElephantPos[10][9] =
+static const unsigned char R_ElephantPos[10][9] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -80,7 +80,7 @@ static const int R_ElephantPos[10][9] =
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 30, 0, 0, 0, 30, 0, 0
 };
-static const int B_HorsePos[10][9] =
+static const unsigned char B_HorsePos[10][9] =
 {
 	60, 70, 75, 70, 60, 70, 75, 70, 60,
 	70, 75, 75, 70, 50, 70, 75, 75, 70,
@@ -93,7 +93,7 @@ static const int B_HorsePos[10][9] =
 	80, 110, 125, 90, 70, 90, 125, 110, 80,
 	70, 80, 90, 80, 70, 80, 90, 80, 70
 };
-static const int R_HorsePos[10][9] =
+static const unsigned char R_HorsePos[10][9] =
 {
 	70, 80, 90, 80, 70, 80, 90, 80, 70,
 	80, 110, 125, 90, 70, 90, 125, 110, 80,
@@ -106,7 +106,7 @@ static const int R_HorsePos[10][9] =
 	70, 75, 75, 70, 50, 70, 75, 75, 70,
 	60, 70, 75, 70, 60, 70, 75, 70, 60
 };
-static const int B_CarPos[10][9] =
+static const unsigned char B_CarPos[10][9] =
 {
 	150, 160, 150, 160, 150, 160, 150, 160, 150,
 	160, 170, 160, 160, 150, 160, 160, 170, 160,
@@ -119,7 +119,7 @@ static const int B_CarPos[10][9] =
 	170, 180, 170, 190, 250, 190, 170, 180, 170,
 	160, 170, 160, 150, 150, 150, 160, 170, 160
 };
-static const int R_CarPos[10][9] =
+static const unsigned char R_CarPos[10][9] =
 {
 	160, 170, 160, 150, 150, 150, 160, 170, 160,
 	170, 180, 170, 190, 250, 190, 170, 180, 170,
@@ -132,7 +132,7 @@ static const int R_CarPos[10][9] =
 	160, 170, 160, 160, 150, 160, 160, 170, 160,
 	150, 160, 150, 160, 150, 160, 150, 160, 150
 };
-static const int B_CanonPos[10][9] =
+static const unsigned char B_CanonPos[10][9] =
 {
 	80, 90, 80, 70, 60, 70, 80, 90, 80,
 	80, 90, 80, 70, 65, 70, 80, 90, 80,
@@ -144,7 +144,7 @@ static const int B_CanonPos[10][9] =
 	110, 125, 100, 70, 60, 70, 100, 125, 110,
 	125, 130, 100, 70, 60, 70, 100, 130, 125
 };
-static const int $_CanonPos[10][9] =
+static const unsigned char R_CanonPos[10][9] =
 {
 	125, 130, 100, 70, 60, 70, 100, 130, 125,
 	110, 125, 100, 70, 60, 70, 100, 125, 110,
@@ -156,7 +156,7 @@ static const int $_CanonPos[10][9] =
 	80, 90, 80, 70, 65, 70, 80, 90, 80,
 	80, 90, 80, 70, 60, 70, 80, 90, 80,
 };
-static const int B_PawnPos[10][9] =
+static const unsigned char B_PawnPos[10][9] =
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -169,7 +169,7 @@ static const int B_PawnPos[10][9] =
 	25, 30, 40, 50, 60, 50, 40, 30, 25,
 	10, 10, 10, 20, 25, 20, 10, 10, 10,
 };
-static const int R_PawnPos[10][9] =
+static const unsigned char R_PawnPos[10][9] =
 {
 	10, 10, 10, 20, 25, 20, 10, 10, 10,
 	25, 30, 40, 50, 60, 50, 40, 30, 25,

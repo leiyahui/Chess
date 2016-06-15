@@ -1,4 +1,13 @@
 #include "Evalution.h"
+const short m_BaseValue[48] =
+{
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+ BASEVALUE_KING,BSEVALUE_BISHOP,BSEVALUE_BISHOP, BASEVALUE_ELEPHANT, BASEVALUE_ELEPHANT, BASEVALUE_HORSE,BASEVALUE_HORSE,
+ BASEVALUE_CAR, BASEVALUE_CAR, BASEVALUE_CANON, BASEVALUE_CANON, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN,
+ BASEVALUE_KING,BSEVALUE_BISHOP,BSEVALUE_BISHOP, BASEVALUE_ELEPHANT, BASEVALUE_ELEPHANT, BASEVALUE_HORSE, BASEVALUE_HORSE,
+ BASEVALUE_CAR, BASEVALUE_CAR, BASEVALUE_CANON, BASEVALUE_CANON, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN
+};
+/*
 int GetBingValue(int currChessBoard[][9],int i, int j)
 {
 	if (currChessBoard[i][j] == B_Pawn)		//如果是黑兵的话返回黑兵的附加值
@@ -434,209 +443,29 @@ LReleatedList GetReleatedPiece(int currChessBoard[][9], int xSPos, int ySPos)
 		break;
 	}
 	return Top;
-}
-int Evaluation(int currChessBoard[][9], bool IsRedTurn)
+}*/
+int evaluation(unsigned char curr_chess_board,unsigned char chess_array[], bool is_red_turn)
 {
-	int sum;
-	int Flex[10][9] = { 0 };		//灵活性记录
-	int Guard[10][9] = { 0 };		//受保护的记录
-	int Attack[10][9] = { 0 };		//受攻击的记录
-	int ChessValue[10][9] = { 0 };	//棋子的估值
-	int i, j;			//循环使用
-	int nHalfValue;
-	int xchess, echess;
-	LReleatedList top, p;
-	int xEPos;
-	int yEPos;
-	int SumRValue;		//红色的总的估值
-	int SumBValue;		//黑色的总的估值
-	for (i = 0; i < 10; i++)
-	{
-		for (j = 0; j < 9; j++)
-		{
-			xchess = currChessBoard[i][j];
-			top = GetReleatedPiece(currChessBoard, i, j);
-			while (top != NULL)
-			{
-				p = PopReleatedMove(&top);
-				xEPos = p->xEPos;
-				yEPos = p->yEPos;
-				free(p);
-				echess = currChessBoard[xEPos][yEPos];
-				if (echess == NO_CHESS)
-				{
-					Flex[i][j]++;		//灵活性增加
-				}
-				else
-				{
-					if (IsSameCol(xchess, echess))		//如果是同一边的棋子就受保护
-					{
-						Guard[xEPos][yEPos]++;
-					}
-					else			//不同边的棋子
-					{
-						Flex[i][j]++;
-						Attack[xEPos][yEPos]++;
-						switch (echess)
-						{
-						case B_King:		//是黑将
-							if (IsRedTurn)		//该红子走了
-							{
-								return 18888;
-							}
-						case R_King:		//红将
-							if (!IsRedTurn)		//该黑子走了
-							{
-								return 18888;
-							}
-						default:
-							Attack[xEPos][yEPos] += (30 + (m_BaseValue[echess] - m_BaseValue[xchess]) / 10) / 10;		//根据威胁加上威胁的分值
-						}
-					}
-				}
-
-			}
-		}
-	}
-	for (i = 0; i < 10; i++)
-	{
-		for (j = 0; j < 9; j++)
-		{
-			xchess = currChessBoard[i][j];
-			if (xchess != NO_CHESS)
-			{
-				ChessValue[i][j]++;		//如果棋子存在则基本价值不为0
-				ChessValue[i][j] += Flex[i][j] * m_FlexValue[xchess];		//加上灵活性的估值
-				ChessValue[i][j] += GetBingValue(currChessBoard,i, j);			//加上兵的估值
-			}
-		}
-	}
-	for (i = 0; i < 10; i++)
-	{
-		for (j = 0; j < 9; j++)
-		{
-			xchess = currChessBoard[i][j];
-			if (xchess != NO_CHESS)
-			{
-				nHalfValue = m_BaseValue[xchess] / 16;
-				ChessValue[i][j] += m_BaseValue[xchess];
-				if (IsRed(xchess))		//如果是红色棋子的话
-				{
-					if (Attack[i][j])	//如果该棋子被威胁的话
-					{
-						if (IsRedTurn)		//改红色棋子走了
-						{
-							if (xchess == R_King)		//如果是红将的话
-							{
-								ChessValue[i][j] -= 20;;
-							}
-							else
-							{
-								ChessValue[i][j] -= nHalfValue * 2;
-								if (Guard[i][j])
-								{
-									ChessValue[i][j] += nHalfValue;
-								}
-							}
-						}
-						else		//红色棋子被威胁该黑子走了
-						{
-							if (xchess == R_King)		//如果被威胁的棋子是红将的话，直接失败
-							{
-								return 18888;		//直接返回失败的最大值
-							}
-							else
-							{
-								ChessValue[i][j] -= nHalfValue * 10;		//表示受威胁程度非常高
-								if (Guard[i][j])
-								{
-									ChessValue[i][j] += nHalfValue * 9;
-								}
-							}
-						}
-						ChessValue[i][j] -= Attack[i][j];		//防止一个兵威胁一个车而估值函数没有反应这个问题
-					}
-					else			//如果不收威胁的话
-					{
-						if (Guard[i][j])
-						{
-							ChessValue[i][j] += 5;
-						}
-					}
-				}
-				else		//如果是黑色棋子
-				{
-					if (Attack[i][j])
-					{
-						if (IsRedTurn)
-						{
-							if (xchess == B_King)		//如果是黑将的话
-							{
-								return 18888;		//返回失败的最大值
-							}
-							else
-							{
-								ChessValue[i][j] -= nHalfValue * 10;	//表示受威胁的程度很大
-								if (Guard[i][j])
-								{
-									ChessValue[i][j] += nHalfValue * 9;
-								}
-							}
-						}
-						else		//如果不是该红色棋子走的话
-						{
-							if (xchess == B_King)		//如果是黑将的话
-							{
-								ChessValue[i][j] -= 20;
-							}
-							else
-							{
-								ChessValue[i][j] -= nHalfValue * 2;
-								if (Guard[i][j])		//如果是受保护的话
-								{
-									ChessValue[i][j] += nHalfValue;
-								}
-							}
-						}
-						ChessValue[i][j] -= Attack[i][j];	//防止以个兵威胁一个车而估值函数没有反应出来
-					}
-					else
-					{
-						if (Guard[i][j])
-						{
-							ChessValue[i][j] += 5;
-						}
-					}
-				}
-			}
-		}
-	}
-	SumBValue = SumRValue = 0;
-	for (i = 0; i<10; i ++)
-	{
-		for (j = 0; j < 9; j++)
-		{
-			xchess = currChessBoard[i][j];
-			if (xchess != NO_CHESS)
-			{
-				if (IsRed(xchess))
-				{
-					SumRValue += ChessValue[i][j];
-				}
-				else
-				{
-					SumBValue += ChessValue[i][j];
-				}
-			}
-		}
-	}
-	if (IsRedTurn)
-	{
-		return SumRValue - SumBValue;
-	}
-	else
-	{
-		return SumBValue - SumRValue;
-	}
-
+   int b_value;
+   int r_value;
+   int i;
+   b_value=r_value=0;
+   for(i=16;i<=31;i++)
+   {
+       if(chess_array[i]!=0)
+       {
+           b_value+=base_value[i];
+       }
+    }
+   for(j=32;j<=47;j++)
+   {
+       if(chess_array[i]!=0)
+       {
+           r_value+=base_value[i];
+       }
+   }
+   return b_value-r_value;
 }
+
+
+
