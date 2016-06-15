@@ -1,57 +1,63 @@
 #include"Move.h"
-void init_moved_link(made_move_link* link)
+void init_moved_stack(made_move_stack* stack)
 {
-    link->top=(made_move*)malloc(sizeof(made_move));
-    link->top->next=NULL;
-    link->len=0;
+    stack->top=stack->base=(made_move*)malloc(sizeof(made_move)*STACK_SIZE);
+    if(stack->top==NULL)
+    {
+        printf("moved_stack init fail\n");
+        exit(0);
+    }
+    stack->len=STACK_SIZE;
 }
-void push(made_move_link* link, int xspos, int yspos, int xepos, int yepos, int echess)		
+void push(made_move_stack* stack,unsigned char form,unsigned char to,int to_chess)		
 {
-	made_move* p = (made_move*)malloc(sizeof(made_move));
-	p->xspos = xspos;
-	p->yspos = yspos;
-	p->xepos = xepos;
-	p->yepos = yepos;
-	p->echess = echess;
-	p->next = link->top->next;
-	link->top->next=p;
-    link->len++;
+    if((stack->top)-(stack->bottom)==stack->len)
+    {
+        printf("stack is full\n");
+    }
+    (stack->top)->to_chess=to_chess;
+    (stack->top)->from=from;
+    (stack->top)->to=to;
+    stack->top++;
 }
-void Pop(made_move_link* link,made_move* pop_move)		
+void pop(made_move_stack* stack,made_move* pop_move)		
 {
-	if (link->len == 0)		
-	{
-		printf("empty stack");
-		return NULL;
-	}
-    made_move* del;
-	del=link->top->next;
-	link->top->next=del->next;
-    strcpy(pop_move,del,sizeof(made_move));
-    free(del);
-	return q;
+    if(stack->top==stack->base)
+    {
+        printf("stack is empty\n");
+        exit(0);
+    }
+    pop_move->to_chess=(stack->top)->pop;
+    pop_move->from=(stack->top)->from;
+    pop_move->to=(stack->top)->to;
+    (stack->top)--;
 }
-int moved_link_length(made_move_link* link)	
+void make_move(int curr_chess_board[],unsigned char position_array,made_move_stack* stack,unsigned char form,unsigned char to)	
 {
-	return link->len;
+	int to_chess = curr_chess_board[to];
+    int from_chess=curr_chess_board[from];
+	curr_chess_board[to] = curr_chess_board[from];
+	curr_chess_board[from] = NO_CHESS;
+    position_array[from_chess]=to;
+    if(to_chess!=NO_CHESS)
+    {
+        position_array[to_chess]=0;
+    }
+	push(stack, from,to, to_chess);		
 }
-void make_move(int curr_chess_board[][9],made_move_link* link,int xspos,int yspos,int xepos,int yepos)	
-{
-	int i = curr_chess_board[xepos][yepos];
-	curr_chess_board[xepos][yepos] = curr_chess_board[xspos][yspos];		//更改棋盘
-	curr_chess_board[xspos][yspos] = NO_CHESS;			//更改棋盘
-	push(link, xspos, yspos, xepos, yepos, i);		//把已走过的步伐进栈，top为全局变量
-}
-void un_make_move(int curr_chess_board[][9], made_move_link* link)	//退回一步就并且出栈
+void un_make_move(int curr_chess_board[],unsigned char position_array,made_move_stack* stack)	//退回一步就并且出栈
 {
 	made_move move;
-    pop(link,&move);		//出栈
-	int xspos = move.xspos;
-	int yspos = move.yspos;
-	int xepos = move.xepos;
-	int yepos = move.yepos; 
-	int i = curr_chess_board[xepos][yepos];		//当时移动的棋子
-	int j = move->echess;				//被覆盖的棋子
-	curr_chess_board[xspos][yspos] = i;
-	curr_chess_board[xepos][yepos] = j;
+    pop(stack,&move);		
+	unsigned char from=move->from;
+    unsigned char to=move->to;
+	int from_chess = curr_chess_board[to];		
+	int to_chess = move->to_chess;				
+	curr_chess_board[from] = from_chess;
+	curr_chess_board[to] = to_chess;
+    position_array[from_chess]=from;
+    if(to_chess!=NO_CHESS)
+    {
+        position_array[to_chess]=to;
+    }
 }

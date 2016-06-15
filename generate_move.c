@@ -1,4 +1,17 @@
 #include "generate_move.h"
+//Chess move direction
+static const unsigned char king_dir[4]={+1,-1,+16,-16};
+static const unsigned char adviser_dir[4]={+17,-17,+15,-15};
+static const unsigned char elephant_dir[4]={+34,-34,+30,-30};
+static const unsigned char horse_dir[8]={+18,-14,+33,-31,+31,-33,+14,-18};
+static const unsigned char chariot_dir[4]={+1,+16,-1,-16};
+static const unsigned char canon_dir[4]={+1,+16,-1,-16};
+static const unsigned char r_pawn_dir[4]={+1,-1,+16,0};
+static const unsigned char b_pawn_dir[4]={+1,-1,-16,0};
+
+//Chess move check
+static const unsigned char elephant_check[4]={+17,-17,+15,-15};
+static const unsigned char horse_check[8]={+1,+1,+16,-16,+16,-16,-1,-1};
 static void generate_king_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count ,movement move_array[][128])
 {
     int i;
