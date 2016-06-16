@@ -61,4 +61,5 @@ const short flex_value[48] =
  FLEXIBILTY_KING,FLEXIBITY_BISHOP,FLEXIBITY_BISHOP, FLEXIBILTY_ELEPHANT, FLEXIBILTY_ELEPHANT, FLEXIBILTY_HORSE, FLEXIBILTY_HORSE,
  FLEXIBILTY_CAR, FLEXIBILTY_CAR, FLEXIBILTY_CANON, FLEXIBILTY_CANON, FLEXIBILTY_PAWN, FLEXIBILTY_PAWN, FLEXIBILTY_PAWN, FLEXIBILTY_PAWN, FLEXIBILTY_PAWN
 };
+static int flex_pos_value(unsigned char curr_chess_board,unsigned char chess_array[],bool is_red_turn);
 int evaluation(unsigned char currChessBoard[],,unsigned char chess_array[],bool is_red_turn);		//给一个棋盘评价

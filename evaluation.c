@@ -1,13 +1,5 @@
-#include "Evalution.h"
-const short m_BaseValue[48] =
-{
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
- BASEVALUE_KING,BSEVALUE_BISHOP,BSEVALUE_BISHOP, BASEVALUE_ELEPHANT, BASEVALUE_ELEPHANT, BASEVALUE_HORSE,BASEVALUE_HORSE,
- BASEVALUE_CAR, BASEVALUE_CAR, BASEVALUE_CANON, BASEVALUE_CANON, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN,
- BASEVALUE_KING,BSEVALUE_BISHOP,BSEVALUE_BISHOP, BASEVALUE_ELEPHANT, BASEVALUE_ELEPHANT, BASEVALUE_HORSE, BASEVALUE_HORSE,
- BASEVALUE_CAR, BASEVALUE_CAR, BASEVALUE_CANON, BASEVALUE_CANON, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN, BASEVALUE_PAWN
-};
-int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bool is_red_turn)
+#include "evalution.h"
+int flex_pos_value(unsigned char curr_chess_board,unsigned char chess_array[],bool is_red_turn)
 {
     int r_value[2];
     int pos,chess;
@@ -33,6 +25,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                   }
               }
           }
+          r_value[i]+=king_pos_value[i][pos];
         }
         /*adviser*/
         for(k=0;k<=1;k++)
@@ -49,6 +42,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                       is(!is_same_color(curr_chess_board[pos],curr_chess_board[n]))
                       {
                           r_value[i]+=flex_vlaue[chess];
+                         r_value[i]+=adviser_pos_value[i][pos];
                       }
                   }
               }
@@ -69,6 +63,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                       is(!is_same_color(curr_chess_board[pos],curr_chess_board[n]))
                       {
                           r_value[i]+=flex_vlaue[chess];
+                          r_value[i]+=elephant_pos_value[i][pos];
                       }
                   }
               }
@@ -92,6 +87,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                            if(curr_chess_board[check])
                            {
                                r_value[i]+=flex_vlaue[chess];
+                               r_value[i]+=horse_pos_value[i][pos];
                            }
                        }
                    }
@@ -114,6 +110,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                        if(is_valid_pos(h_c_c_pos,n))
                        {
                            r_value[i]+=flex_value[chess];
+                           r_value[i]+=charoit_pos_value[i][pos];
                        }
                        count++;
                        n=pos+chariot_dir[j]*count;
@@ -125,6 +122,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                            if(!is_same_color(curr_chess_board[pos],curr_chess_board[n]))
                            {
                                r_value[i]+=flex_value[chess];
+                               r_value[i]+=charoit_pos_value[i][pos];
                            }
                        }
                    }
@@ -147,6 +145,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                       if(is_valid_pos(h_c_c_pos,n))
                       {
                                r_value[i]+=flex_value[chess];
+                               r_value[i]+=canon_pos_value[i][pos];
                       }
                       count++;
                       n=pos+chariot_dir[j]*count;
@@ -166,6 +165,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                           if(!is_same_color(curr_chess_board[pos],curr_chess_board[n]))
                           {
                                r_value[i]+=flex_value[chess];
+                               r_value[i]+=canon_pos_value[i][pos];
                           }
                       }
                   }
@@ -188,6 +188,7 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                    if(!is_same_color(curr_chess_board[pos],curr_chess_board[n]))
                    {
                        r_value[0]+=flex_value[chess];
+                       r_value[0]+=canon_pos_value[0][pos];
                    }
                }
            }
@@ -207,19 +208,21 @@ int flex_value(unsigned char curr_chess_board,int unsigned char chess_array[],bo
                    if(!is_same_color(curr_chess_board[pos],curr_chess_board[n]))
                    {
                        r_value[1]+=flex_value[chess];
+                       r_value[1]+=canon_pos_value[1][pos];
                    }
                }
            }
         }
     }   
-    return r_value[0]=r_value[1];
+    return r_value[0]-r_value[1];
 
-}         
+}        
 
-int evaluation(unsigned char curr_chess_board,unsigned char chess_array[], bool is_red_turn)
+int evaluation(unsigned char curr_chess_board[],unsigned char chess_array[], bool is_red_turn)
 {
    int b_value;
    int r_value;
+   int value;
    int i;
    b_value=r_value=0;
    for(i=16;i<=31;i++)
@@ -236,7 +239,9 @@ int evaluation(unsigned char curr_chess_board,unsigned char chess_array[], bool 
            r_value+=base_value[i];      //base_value;
        }
    }
-   return b_value-r_value;
+   value=b_value-r_value;
+   value+=flex_pos_value(curr_chess_board,chess_array,is_red_turn);
+   
 }
 
 
