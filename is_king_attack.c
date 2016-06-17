@@ -1,9 +1,10 @@
 #include"is_king_attack.h"
-int is_king_attack(unsigned char curr_chess_board[],unsigned char chess_array,int side)
+int is_king_attack(unsigned char curr_chess_board[],unsigned char chess_array,int side)//black 0, red 1
 {
     int r;      //return value;
     int i,j;
-    unsigned char king_pos,attacker_pos_a,attacker_pos_b,check_pos,b_king_pos,r_king_pos;
+    int count;
+    unsigned char king_pos,attacker_pos,check_pos,b_king_pos,r_king_pos;
     int side_tag;
     b_king_pos=chess_array[16];
     r_king_pos=chess_array[32];
@@ -24,7 +25,7 @@ int is_king_attack(unsigned char curr_chess_board[],unsigned char chess_array,in
             return r;       //king face to face
         }
     }
-    king_pos==chess_array[side_tag];
+    king_pos==chess_array[side*16};
     /*horse attack*/
     for(i=0;i<8;i++)
     {
@@ -43,7 +44,7 @@ int is_king_attack(unsigned char curr_chess_board[],unsigned char chess_array,in
     {
         j=0;
         attacker_pos=king_pos+charoit_dir[i];
-        while(attacker_pos>=0&&attacker<256)
+        while(attacker_pos>=0&&attacker_pos<256)
         {
             if(curr_chess_board[attacker_pos]!=NO_CHESS)
             {
@@ -58,15 +59,49 @@ int is_king_attack(unsigned char curr_chess_board[],unsigned char chess_array,in
         }
     }
     /*canon attack*/
-    for(i=0;i<4;j++)
-    {
-        j=0;
-        attacker_pos=king_pos+canon_dir[i];
-
-
-
-
-
-
-    
-
+   for(i=0;i<4;i++)
+   {
+       j=0;
+       count=0;
+       attacker_pos=king_pos+canon_dir[i];
+       while(attacker_pos<=0&&attacker_pos<256)
+       {
+           if(curr_chess_board[attacker_pos]!=NO_CHESS)
+           {
+               if(count==0)
+               {
+                 count=1;
+               }
+               else
+               {
+                   if(curr_chess_board[attacker_pos]==side_tag+9||curr_chess_board[attacker_pos]==side_tag+10)
+                   {
+                       return r;
+                   }
+                   break;
+               }
+           }
+       }
+   }
+   /*pawn attack*/
+   for(i=0;i<3;i++)
+   {
+       if(!side)
+       {
+           attacker_pos=king_pos+r_pawn_dir[i];
+           if(curr_chess_board[attacker_pos]>=43&&curr_chess_board[attacker_pos]<=47)
+           {
+                return r;
+           }
+       }
+       else
+       {
+           attacker_pos=king_pos+b_pawn_dir[i];
+           if(curr_chess_board[attacker_pos]>=27&&curr_chess_board[attacker_pos]<=31)
+           {
+               return r;
+           }
+       }
+   }
+   return 0;
+}

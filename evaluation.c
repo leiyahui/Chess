@@ -1,5 +1,5 @@
 #include "evalution.h"
-int flex_pos_value(unsigned char curr_chess_board,unsigned char chess_array[],bool is_red_turn)
+int flex_pos_value()
 {
     int r_value[2];
     int pos,chess;
@@ -218,7 +218,7 @@ int flex_pos_value(unsigned char curr_chess_board,unsigned char chess_array[],bo
 
 }        
 
-int evaluation(unsigned char curr_chess_board[],unsigned char chess_array[], bool is_red_turn)
+int evaluation()
 {
    int b_value;
    int r_value;
@@ -240,7 +240,7 @@ int evaluation(unsigned char curr_chess_board[],unsigned char chess_array[], boo
        }
    }
    value=b_value-r_value;
-   value+=flex_pos_value(curr_chess_board,chess_array,is_red_turn);
+   value+=flex_pos_value();
    
 }
 

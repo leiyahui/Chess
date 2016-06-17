@@ -12,12 +12,6 @@ static const unsigned char b_pawn_dir[4]={+1,-1,-16,0};
 //Chess move check
 static const unsigned char elephant_check[4]={+17,-17,+15,-15};
 static const unsigned char horse_check[8]={+1,+1,+16,-16,+16,-16,-1,-1};
-unsigned char chess_array=
-{
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-    199,198,200,197,201,196,202,195,203,164,170,147,149,151,153,155,
-    55,54,56,53,57,52,58,51,59,84,90,99,101,103,105,107
-}
 static void generate_king_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count ,movement move_array[][128])
 {
     int i;
@@ -186,7 +180,7 @@ static void generate_bpawn_move(unsigned char curr_chess_board[],unsigned char f
         }
     }
 }
-int generate_move(unsigned char curr_chess_board[],int depth,movement move_array[][128],unsigned char chess_array[])
+int generate_move(int depth)
 {
     int i,count;
     unsigned char pos;
