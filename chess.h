@@ -6,7 +6,7 @@
 #define NO_CHESS	0
 #define true 1
 #define false 2
-#define bool unsigned
+#define bool unsigned short
 /* 
 #define B_Chariot   1
 #define B_Horse		2

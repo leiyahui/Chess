@@ -19,7 +19,7 @@ unsigned char curr_chess_board[256] =			//use one dimension array to represent c
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0
 };							
-unsigned char chess_array=
+unsigned char chess_array=                  //save chess position
 {
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
     199,198,200,197,201,196,202,195,203,164,170,147,149,151,153,155,

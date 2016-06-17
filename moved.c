@@ -32,7 +32,7 @@ void pop(made_move_stack* stack,made_move* pop_move)
     pop_move->to=(stack->top)->to;
     (stack->top)--;
 }
-void make_move(int curr_chess_board[],unsigned char position_array,made_move_stack* stack,unsigned char form,unsigned char to)	
+void make_move(made_move_stack* stack,unsigned char form,unsigned char to)	
 {
 	int to_chess = curr_chess_board[to];
     int from_chess=curr_chess_board[from];
@@ -45,7 +45,7 @@ void make_move(int curr_chess_board[],unsigned char position_array,made_move_sta
     }
 	push(stack, from,to, to_chess);		
 }
-void un_make_move(int curr_chess_board[],unsigned char position_array,made_move_stack* stack)	//退回一步就并且出栈
+void un_make_move(unsigned char position_array,made_move_stack* stack)	//退回一步就并且出栈
 {
 	made_move move;
     pop(stack,&move);		

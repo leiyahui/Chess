@@ -12,7 +12,7 @@ static const unsigned char b_pawn_dir[4]={+1,-1,-16,0};
 //Chess move check
 static const unsigned char elephant_check[4]={+17,-17,+15,-15};
 static const unsigned char horse_check[8]={+1,+1,+16,-16,+16,-16,-1,-1};
-static void generate_king_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count ,movement move_array[][128])
+static void generate_king_move(unsigned char from,int depth,int* count)
 {
     int i;
     int to;
@@ -28,7 +28,7 @@ static void generate_king_move(unsigned char curr_chess_board[],unsigned char fr
         }
     }
 }
-static void generate_adviser_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+static void generate_adviser_move(unsigned char from,int depth,int* count)
 {
     int i;
     int to;
@@ -45,7 +45,7 @@ static void generate_adviser_move(unsigned char curr_chess_board[],unsigned char
     }
 }
 
-static void generate_elephant_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+static void generate_elephant_move(unsigned char from,int depth,int* count)
 {
     int i;
     int to;
@@ -64,7 +64,7 @@ static void generate_elephant_move(unsigned char curr_chess_board[],unsigned cha
     }
 }
 
-static void generate_horse_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+static void generate_horse_move(unsigned char form,int depth,int* count)
 {
     int i;
     int to,check;
@@ -82,7 +82,7 @@ static void generate_horse_move(unsigned char curr_chess_board[],unsigned char f
     }
 }
 
-static void generate_chariot_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+static void generate_chariot_move(unsigned char from,int depth,int* count)
 {
     int i,j;
     int to;
@@ -111,7 +111,7 @@ static void generate_chariot_move(unsigned char curr_chess_board[],unsigned char
         }
     }
 }
-static void generate_canon_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+static void generate_canon_move(unsigned char from,int depth,int* count)
 {
     int i,j;
     int to;
@@ -148,7 +148,7 @@ static void generate_canon_move(unsigned char curr_chess_board[],unsigned char f
         }
     }
 }
-static void generate_rpawn_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+static void generate_r_pawn_move(unsigned char from,int depth,int* count)
 {
     int i;
     int to;
@@ -164,7 +164,7 @@ static void generate_rpawn_move(unsigned char curr_chess_board[],unsigned char f
         }
     }
 }
-static void generate_bpawn_move(unsigned char curr_chess_board[],unsigned char from,int depth,int* count,movement move_array[][128])
+static void generate_b_pawn_move(unsigned char from,int depth,int* count)
 {
     int i;
     int to;
@@ -279,7 +279,7 @@ int generate_move(int depth)
 
 
 
-static void add_movement(movement move_array[][128],int depth,int* count,unsigned char from,unsigned char to)
+static void add_movement(int depth,int* count,unsigned char from,unsigned char to)
 {
     move_array[depth][*count].from=from;
     move_array[depth][*count].to=to;

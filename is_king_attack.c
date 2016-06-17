@@ -1,5 +1,5 @@
 #include"is_king_attack.h"
-int is_king_attack(unsigned char curr_chess_board[],unsigned char chess_array,int side)//black 0, red 1
+int is_king_attack(int side)//black 0, red 1
 {
     int r;      //return value;
     int i,j;
