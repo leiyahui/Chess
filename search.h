@@ -2,6 +2,7 @@
 #include"chess.h"
 #include "MoveGenerator.h"
 #include "Moved.h"
+#include "limits.h"
 #include "evaluation.h"
 extern unsigned char curr_chess_board[256] =			//use one dimension array to represent chess board
 {
@@ -29,4 +30,4 @@ extern unsigned char chess_array=                  //save chess position
     55,54,56,53,57,52,58,51,59,84,90,99,101,103,105,107
 }
 extern unsigned char move_array[10][128]={0};
-void max_min_search(int depth,movement* r_move);
+void nega_search(int depth);

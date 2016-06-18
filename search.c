@@ -1,5 +1,6 @@
 #include "search.h"
 #include "evalution.h"
+static movement best_move;
 unsigned char curr_chess_board[256] =			//use one dimension array to represent chess board
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
@@ -56,25 +57,18 @@ int IsRedFail(int currChessBoard[][9])
 	}
 	return 1;
 }
-int min_max_search(int depth,movement* r_move)
+int nega_search(int depth)
 {
     int value;
-    int best;
+    int max_value;
     int side,count;
     int i;
     unsigned char form,to;
     side=depth%2;
-    if(side)
-    {
-        best=MAX_INT;
-    }
-    else
-    {
-        best=MIN_INT:
-    }
+    max_vlaue=MIN_INT;
     if(depth==0)
     {
-        return valuation();
+        return evaluation(side);
     }
     count=generate_move();
     for(i=0;i<count;i++)
@@ -82,31 +76,13 @@ int min_max_search(int depth,movement* r_move)
         from=move_array[depth][i].from;
         to=move_array[depth][i].to;
         make_move(from,to);
-        value=min_max_search(int depth-1,movement* r_move);
+        value=-nega_search(depth-1);
         un_make_move();
-        if(side)
+        if(value>best_value)
         {
-            if(value<best)
-            {
-                best=value;
-                if(depth==max_depth)
-                {
-                    r_move->from=from;
-                    r_move->to=to;
-                }
-            }
-        }
-        else
-        {
-            if(value>best)
-            {
-                best=value;
-                if(depth==max_depth)
-                {
-                    r_move->from=from;
-                    r_move->to=to;
-                }
-            }
+            best_value=value;
+            best_move->from=from;
+            best_move->to=to;
         }
     }
     return best;

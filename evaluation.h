@@ -24,5 +24,5 @@ typedef struct ReleatedNode
 	ReleatedNode* next;
 }LReleatedNode, *LReleatedList;
 static int flex_pos_value();
-int evaluation();		//给一个棋盘评价
+int evaluation(int side);		//给一个棋盘评价
 #endif

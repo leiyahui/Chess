@@ -502,11 +502,11 @@ int flex_pos_value()
            }
         }
     }   
-    return r_value[0]-r_value[1];
+    return r_value[1]-r_value[0];
 
 }        
 
-int evaluation()
+int evaluation(int side)        //if side is true,return red_value-black_value
 {
    int b_value;
    int r_value;
@@ -527,8 +527,12 @@ int evaluation()
            r_value+=base_value[i];      //base_value;
        }
    }
-   value=b_value-r_value;
+   value=r_value-b_value;
    value+=flex_pos_value();
+   if(side)
+       return value;
+   else
+       return  -value;
 }
 
 
