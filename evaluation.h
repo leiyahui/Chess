@@ -17,12 +17,12 @@
 #define FLEXIBILTY_HORSE 5
 #define FLEXIBILTY_CANON 3
 #define FLEXIBILTY_KING 2
-typedef struct ReleatedNode		
+/*typedef struct ReleatedNode		
 {
 	int xEPos;
 	int yEPos;
 	ReleatedNode* next;
-}LReleatedNode, *LReleatedList;
+}LReleatedNode, *LReleatedListi;*/
 static int flex_pos_value();
 int evaluation(int side);		//给一个棋盘评价
 #endif

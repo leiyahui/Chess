@@ -26,7 +26,7 @@
 #define is_black(chess)	(chess&16==1)
 #define is_red(chess)	(chess&32==1)
 #define is_same_color(chess1,chess2)	((is_black(chess1)&&is_black(chess2))||(is_red(chess1)&&is_red(chess2)))
-unsigned char curr_chess_board[256] =			//use one dimension array to represent chess board
+/*unsigned char curr_chess_board[256] =			//use one dimension array to represent chess board
 {
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
@@ -44,5 +44,5 @@ unsigned char curr_chess_board[256] =			//use one dimension array to represent c
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,
 	0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0
-};							
+};*/							
 #endif

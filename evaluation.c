@@ -530,9 +530,9 @@ int evaluation(int side)        //if side is true,return red_value-black_value
    value=r_value-b_value;
    value+=flex_pos_value();
    if(side)
-       return value;
+       return -value;
    else
-       return  -value;
+       return  value;
 }
 
 

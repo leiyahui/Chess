@@ -1,15 +1,60 @@
-/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/../../../../lib/crt1.o: In function `_start':
-(.text+0x20): undefined reference to `main'
-/tmp/ccsIqQU3.o: In function `generate_king_move':
-generate_move.c:(.text+0x4b): undefined reference to `is_valid_pos'
-/tmp/ccsIqQU3.o: In function `generate_adviser_move':
-generate_move.c:(.text+0xcb): undefined reference to `is_valid_pos'
-/tmp/ccsIqQU3.o: In function `generate_elephant_move':
-generate_move.c:(.text+0x163): undefined reference to `is_valid_pos'
-/tmp/ccsIqQU3.o: In function `generate_horse_move':
-generate_move.c:(.text+0x213): undefined reference to `is_valid_pos'
-/tmp/ccsIqQU3.o: In function `generate_chariot_move':
-generate_move.c:(.text+0x2bb): undefined reference to `is_valid_pos'
-/tmp/ccsIqQU3.o:generate_move.c:(.text+0x343): more undefined references to `is_valid_pos' follow
-collect2: error: ld returned 1 exit status
-make: *** [move_generate.o] Error 1
+search.c:30:1: error: expected ‘,’ or ‘;’ before ‘unsigned’
+ unsigned char move_array[10][128]={0};
+ ^~~~~~~~
+search.c: In function ‘IsBlackFail’:
+search.c:38:32: error: ‘B_King’ undeclared (first use in this function)
+    if (currChessBoard[i][j] == B_King)
+                                ^~~~~~
+search.c:38:32: note: each undeclared identifier is reported only once for each function it appears in
+search.c: In function ‘IsRedFail’:
+search.c:53:32: error: ‘R_King’ undeclared (first use in this function)
+    if (currChessBoard[i][j] == R_King)
+                                ^~~~~~
+search.c: At top level:
+search.c:61:5: error: conflicting types for ‘nega_search’
+ int nega_search(int depth)
+     ^~~~~~~~~~~
+In file included from search.c:1:0:
+search.h:10:6: note: previous declaration of ‘nega_search’ was here
+ void nega_search(int depth);
+      ^~~~~~~~~~~
+search.c: In function ‘nega_search’:
+search.c:68:5: error: ‘max_vlaue’ undeclared (first use in this function)
+     max_vlaue=MIN_INT;
+     ^~~~~~~~~
+search.c:68:15: error: ‘MIN_INT’ undeclared (first use in this function)
+     max_vlaue=MIN_INT;
+               ^~~~~~~
+search.c:73:11: error: too few arguments to function ‘generate_move’
+     count=generate_move();
+           ^~~~~~~~~~~~~
+In file included from search.h:4:0,
+                 from search.c:1:
+generate_move.h:25:5: note: declared here
+ int generate_move(int depth);
+     ^~~~~~~~~~~~~
+search.c:76:9: error: ‘from’ undeclared (first use in this function)
+         from=move_array[depth][i].from;
+         ^~~~
+search.c:76:34: error: request for member ‘from’ in something not a structure or union
+         from=move_array[depth][i].from;
+                                  ^
+search.c:77:32: error: request for member ‘to’ in something not a structure or union
+         to=move_array[depth][i].to;
+                                ^
+search.c:78:9: warning: implicit declaration of function ‘make_move’ [-Wimplicit-function-declaration]
+         make_move(from,to);
+         ^~~~~~~~~
+search.c:80:9: warning: implicit declaration of function ‘un_make_move’ [-Wimplicit-function-declaration]
+         un_make_move();
+         ^~~~~~~~~~~~
+search.c:90:26: error: invalid type argument of ‘->’ (have ‘movement {aka struct _movement}’)
+                 best_move->from=from;
+                          ^~
+search.c:91:26: error: invalid type argument of ‘->’ (have ‘movement {aka struct _movement}’)
+                 best_move->to=to;
+                          ^~
+search.c:95:12: error: ‘best’ undeclared (first use in this function)
+     return best;
+            ^~~~
+make: *** [search.o] Error 1
